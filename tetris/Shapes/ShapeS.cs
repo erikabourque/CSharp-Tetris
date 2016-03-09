@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Tetris
 {
-    public class ShapeS
+    public class ShapeS: Shape
     {
         int length = 4;
         Block[] blocks = new Block[4];
@@ -22,7 +22,7 @@ namespace Tetris
             blocks[3] = new Block(Color.FromName("Green"), new Point(1, 5));
         }
 
-        public int Length
+        public override int Length
         {
             get { return length; }
         }
@@ -41,7 +41,7 @@ namespace Tetris
             rotationOffset[1, 3] = new Point(0,-2);
         }
 
-        public void MoveLeft()
+        public override void MoveLeft()
         {
             if (currentRotation == 0)
             {
@@ -65,7 +65,7 @@ namespace Tetris
             }
         }
 
-        public void MoveRight()
+        public override void MoveRight()
         {
             if (currentRotation == 0)
             {
@@ -89,7 +89,7 @@ namespace Tetris
             }
         }
 
-        public void MoveDown()
+        public override void MoveDown()
         {
             if (currentRotation == 0)
             {
@@ -113,7 +113,7 @@ namespace Tetris
             }
         }
 
-        public void Drop()
+        public override void Drop()
         {
             int position = 19;
             if (currentRotation == 0)
@@ -148,7 +148,7 @@ namespace Tetris
             }
         }
 
-        public void Rotate()
+        public override void Rotate()
         {
             currentRotation++;
             if (currentRotation == 2)
@@ -163,7 +163,7 @@ namespace Tetris
             }
         }
 
-        public void Reset()
+        public override void Reset()
         {
             blocks[0].Position = new Point(0, 5);
             blocks[1].Position = new Point(0, 6);

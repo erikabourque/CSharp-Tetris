@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetris.tmep;
 
 namespace Tetris
 {
@@ -64,25 +63,25 @@ namespace Tetris
             switch (index)
             {
                 case 1:
-                    current = new ShapeO();
+                    current = new ShapeO(board);
                     break;
                 case 2:
-                    current = new ShapeI();
+                    current = new ShapeI(board);
                     break;
                 case 3:
-                    current = new ShapeS();
+                    current = new ShapeS(board);
                     break;
                 case 4:
-                    current = new ShapeZ();
+                    current = new ShapeZ(board);
                     break;
                 case 5:
-                    current = new ShapeL();
+                    current = new ShapeL(board);
                     break;
                 case 6:
-                    current = new ShapeJ();
+                    current = new ShapeJ(board);
                     break;
                 case 7:
-                    current = new ShapeT();
+                    current = new ShapeT(board);
                     break;
             }
 
