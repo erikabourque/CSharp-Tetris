@@ -10,7 +10,6 @@ namespace Tetris
     // Author: Erika Bourque
     // Date: 09/03/2016
     // Version: 2.0
-    // Adding a useless comment
 
     public class Board : IBoard
     {
@@ -20,16 +19,13 @@ namespace Tetris
         private IShapeFactory shapeFactory;
 
         // Constructor
-        // ADD MOAR?!?
-        // Why do i need shape? to place the colors?
         public Board()
         {
             // Creating proxy
             shapeFactory = new ShapeProxy(this);
-            //shape = shapeFactory;
+            shape = (IShape) shapeFactory;
             
-
-            // Last thing
+            // Creating a new shape and adding Board to its event.
             shapeFactory.DeployNewShape();
             shape.JoinPile += addToPile;
         }
