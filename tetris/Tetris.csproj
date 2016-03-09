@@ -60,15 +60,16 @@
     <Compile Include="Board.cs" />
     <Compile Include="Business Interfaces\IShape.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Shape.cs" />
-    <Compile Include="ShapeI.cs" />
-    <Compile Include="ShapeJ.cs" />
-    <Compile Include="ShapeL.cs" />
-    <Compile Include="ShapeO.cs" />
-    <Compile Include="ShapeProxy.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Shapes\ShapeI.cs" />
+    <Compile Include="Shapes\ShapeJ.cs" />
+    <Compile Include="Shapes\ShapeL.cs" />
+    <Compile Include="Shapes\ShapeO.cs" />
+    <Compile Include="Shapes\ShapeProxy.cs" />
     <Compile Include="Scoreboard.cs" />
-    <Compile Include="ShapeS.cs" />
-    <Compile Include="ShapeZ.cs" />
+    <Compile Include="Shapes\ShapeS.cs" />
+    <Compile Include="Shapes\ShapeT.cs" />
+    <Compile Include="Shapes\ShapeZ.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
