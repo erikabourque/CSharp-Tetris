@@ -10,7 +10,7 @@ namespace Tetris
     // Author: Erika Bourque
     // Date: 09/03/2016
     // Version: 2.0
-    // Adding a useless comment
+    // commit
 
     public class Board : IBoard
     {
