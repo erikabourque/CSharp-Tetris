@@ -9,8 +9,7 @@ namespace Tetris
 {
     // Author: Erika Bourque
     // Date: 09/03/2016
-    // Version: 2.0
-    // commit
+    // Version: 6.0
 
     public class Board : IBoard
     {
@@ -20,16 +19,13 @@ namespace Tetris
         private IShapeFactory shapeFactory;
 
         // Constructor
-        // ADD MOAR?!?
-        // Why do i need shape? to place the colors?
         public Board()
         {
             // Creating proxy
             shapeFactory = new ShapeProxy(this);
-            //shape = shapeFactory;
-            
+            shape = (IShape)shapeFactory;
 
-            // Last thing
+            // Creating a new shape and adding Board to its event.
             shapeFactory.DeployNewShape();
             shape.JoinPile += addToPile;
         }
@@ -85,7 +81,6 @@ namespace Tetris
         {
             Point coords;
 
-            // Getting the coords of each block, adding it to the pile.
             for (int i = 0; i < shape.Length; i++)
             {
                 coords = shape[i].Position;
