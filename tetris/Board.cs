@@ -81,6 +81,7 @@ namespace Tetris
         {
             Point coords;
 
+            // Getting the coords of each block, adding it to the pile.
             for (int i = 0; i < shape.Length; i++)
             {
                 coords = shape[i].Position;
