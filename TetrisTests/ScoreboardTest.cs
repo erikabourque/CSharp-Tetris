@@ -176,3 +176,5 @@ namespace TetrisTests
             // Act
             board.OnLinesCleared(numLines);
         }
+    }
+}
