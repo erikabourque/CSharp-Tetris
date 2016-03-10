@@ -22,9 +22,14 @@ namespace Tetris
         private Scoreboard(){ }
 
         // Adds itself to an IBoard's lines cleared event.
-        public Scoreboard(IBoard obj)
+        public Scoreboard(IBoard board)
         {
-            obj.LinesCleared += incrementLinesCleared;
+            if (board == null)
+            {
+                throw new NullReferenceException("Scoreboard constructor error. Board is null.");
+            }
+
+            board.LinesCleared += incrementLinesCleared;
         }
 
         // Properties
