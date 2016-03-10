@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Tetris
 {
+    // Author: Erika Bourque
+    // Date: 10/03/2016
+    // Version: 2.0
+
     class ShapeT : Shape
     {
         IBoard board;
