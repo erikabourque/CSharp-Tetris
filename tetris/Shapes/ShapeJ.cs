@@ -10,13 +10,14 @@ namespace Tetris
     public class ShapeJ: Shape
     {
         int length = 4;
+        IBoard board;
 
-        public ShapeJ()
+        public ShapeJ(IBoard board)
         {
-            blocks[0] = new Block(Color.FromName("Orange"), new Point(0, 4));
-            blocks[1] = new Block(Color.FromName("Orange"), new Point(0, 5));
-            blocks[2] = new Block(Color.FromName("Orange"), new Point(0, 6));
-            blocks[3] = new Block(Color.FromName("Orange"), new Point(1, 6));
+            blocks[0] = new Block(Color.FromName("Orange"), new Point(0, 4), board);
+            blocks[1] = new Block(Color.FromName("Orange"), new Point(0, 5), board);
+            blocks[2] = new Block(Color.FromName("Orange"), new Point(0, 6), board);
+            blocks[3] = new Block(Color.FromName("Orange"), new Point(1, 6), board);
         }
 
         public override int Length
