@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tetris
 {
+    // Author: Erika Bourque
+    // Date: 09/03/2016
+    // Version: 3.0
+
     public class ShapeProxy : IShapeFactory, IShape
     {
         // Instance Variables
@@ -14,7 +18,6 @@ namespace Tetris
         private IBoard board;
 
         // Constructor
-        // INSERT CODE HERE
         public ShapeProxy(IBoard board)
         {
             random = new Random();
@@ -55,7 +58,6 @@ namespace Tetris
         }
 
         // Methods
-        // PROBS ADD MORE
         public void DeployNewShape()
         {
             int index = random.Next(1, 8);
