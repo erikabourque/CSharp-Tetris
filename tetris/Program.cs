@@ -8,6 +8,8 @@ namespace Tetris
 {
     class Program
     {
-        
+        static void main(string[] args)
+        {
+        }
     }
 }

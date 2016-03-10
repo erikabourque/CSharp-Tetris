@@ -166,24 +166,24 @@ namespace Tetris
 
         public override void Rotate()
         {
-            if (currentRotation == 0)
+            if (currentRotation == 1)
             {
-                currentRotation++;
+                currentRotation = 0;
                 if (blocks[0].TryRotate(rotationOffset[1,0]) && blocks[2].TryRotate(rotationOffset[1, 2]) && blocks[3].TryRotate(rotationOffset[1, 3]))
                 {
-                    blocks[0].Rotate(rotationOffset[1, 0]);
-                    blocks[2].Rotate(rotationOffset[2, 0]);
-                    blocks[3].Rotate(rotationOffset[3, 0]);
+                    blocks[0].Rotate(rotationOffset[0, 0]);
+                    blocks[1].Rotate(rotationOffset[0, 1]);
+                    blocks[3].Rotate(rotationOffset[0, 3]);
                 }
             }
             else
             {
-                currentRotation = 0;
+                currentRotation++;
                 if (blocks[0].TryRotate(rotationOffset[0, 0]) && blocks[2].TryRotate(rotationOffset[0, 2]) && blocks[3].TryRotate(rotationOffset[0, 3]))
                 {
-                    blocks[0].Rotate(rotationOffset[0, 0]);
-                    blocks[2].Rotate(rotationOffset[0, 2]);
-                    blocks[3].Rotate(rotationOffset[0, 3]);
+                    blocks[0].Rotate(rotationOffset[1, 0]);
+                    blocks[1].Rotate(rotationOffset[1, 1]);
+                    blocks[3].Rotate(rotationOffset[1, 3]);
                 }
             }
         }
