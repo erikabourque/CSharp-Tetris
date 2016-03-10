@@ -70,16 +70,85 @@ namespace TetrisTests
         }
 
         [TestMethod]
-        public void incrementLinesCleared_validNum()
+        public void incrementLinesCleared_validNum_ScoreNoBonus()
         {
             // Arrange
             int numLines = 2;
-            IBoard board = new TestBoard();
+            TestBoard board = new TestBoard();
+            Scoreboard test = new Scoreboard(board);
 
             // Act
+            board.OnLinesCleared(numLines);
+            int score = test.Score;
 
             // Assert
-          //  Assert.AreEqual()
+            Assert.AreEqual(200, score);
+        }
+
+        [TestMethod]
+        public void incrementLinesCleared_validNum_ScoreBonus()
+        {
+            // Arrange
+            int numLines = 4;
+            TestBoard board = new TestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
+            int score = test.Score;
+
+            // Assert
+            Assert.AreEqual(800, score);
+        }
+
+        [TestMethod]
+        public void incrementLinesCleared_validNum_Lines()
+        {
+            // Arrange
+            int numLines = 2;
+            TestBoard board = new TestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
+            int lines = test.Lines;
+
+            // Assert
+            Assert.AreEqual(numLines, lines);
+        }
+
+        [TestMethod]
+        public void incrementLinesCleared_validNum_Level()
+        {
+            // Arrange
+            int numLines = 2;
+            TestBoard board = new TestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
+            int level = test.Level;
+
+            // Assert
+            Assert.AreEqual(1, level);
+        }
+
+        [TestMethod]
+        public void incrementLinesCleared_validNum_LevelIncrease()
+        {
+            // Arrange
+            int numLines = 4;
+            TestBoard board = new TestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
+            board.OnLinesCleared(numLines);
+            board.OnLinesCleared(numLines);
+            int level = test.Level;
+
+            // Assert
+            Assert.AreEqual()
         }
     }
 }
