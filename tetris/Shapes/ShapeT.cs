@@ -18,6 +18,7 @@ namespace Tetris
         public ShapeT(IBoard board)
         {
             this.board = board;
+            blocks = new Block[4];
 
             // Filling block array
             blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 3), board);
