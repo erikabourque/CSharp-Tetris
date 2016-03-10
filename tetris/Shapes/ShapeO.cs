@@ -11,7 +11,6 @@ namespace Tetris
     {
         //O does not rotate
         int length = 4;
-        Block[] blocks = new Block [4];
 
         public ShapeO()
         {
@@ -24,6 +23,11 @@ namespace Tetris
         public override int Length
         {
             get { return length; }
+        }
+
+        public override Block this[int index]
+        {
+            get { return blocks[index]; }
         }
 
         public override void MoveLeft()
