@@ -13,7 +13,8 @@ namespace Tetris
 
         public ShapeT(IBoard board)
         {
-            rotationOffset = new Point[2, 4];
+            blocks = new Block[4];
+            rotationOffset = new Point[4, 4];
             currentRotation = 0;
             CreateRotationArray();
             this.board = board;

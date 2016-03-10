@@ -14,6 +14,7 @@ namespace Tetris
 
         public ShapeI(IBoard board )
         {
+            blocks = new Block[4];
             rotationOffset = new Point[2, 4];
             currentRotation = 0;
             CreateRotationArray();
@@ -170,10 +171,10 @@ namespace Tetris
 
         public override void Rotate()
         {
-            if (currentRotation == 1)
+            if (currentRotation == 0)
             {
-                currentRotation = 0;
-                if (blocks[0].TryRotate(rotationOffset[1,0]) && blocks[2].TryRotate(rotationOffset[1, 2]) && blocks[3].TryRotate(rotationOffset[1, 3]))
+                currentRotation++;
+                if (blocks[0].TryRotate(rotationOffset[0,0]) && blocks[1].TryRotate(rotationOffset[0, 1]) && blocks[3].TryRotate(rotationOffset[0, 3]))
                 {
                     blocks[0].Rotate(rotationOffset[0, 0]);
                     blocks[1].Rotate(rotationOffset[0, 1]);
@@ -182,8 +183,8 @@ namespace Tetris
             }
             else
             {
-                currentRotation++;
-                if (blocks[0].TryRotate(rotationOffset[0, 0]) && blocks[2].TryRotate(rotationOffset[0, 2]) && blocks[3].TryRotate(rotationOffset[0, 3]))
+                currentRotation = 0;
+                if (blocks[0].TryRotate(rotationOffset[1, 0]) && blocks[1].TryRotate(rotationOffset[1, 2]) && blocks[3].TryRotate(rotationOffset[1, 3]))
                 {
                     blocks[0].Rotate(rotationOffset[1, 0]);
                     blocks[1].Rotate(rotationOffset[1, 1]);

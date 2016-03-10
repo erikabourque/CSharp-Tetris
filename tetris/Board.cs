@@ -53,6 +53,10 @@ namespace Tetris
                     throw new ArgumentException("Board error. Invalid coordinates for indexer: " + i + ", " + j);
                 }
             }
+            set
+            {
+                board[i, j] = value;
+            }
         }
 
         // Events

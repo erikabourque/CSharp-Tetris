@@ -28,7 +28,7 @@ namespace TetrisTests
 
         public void createShape()
         {
-            shapeO = new ShapeO(board);
+           shapeO = new ShapeO(board);
         }
 
         [TestMethod]

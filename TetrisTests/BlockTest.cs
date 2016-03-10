@@ -50,11 +50,11 @@ namespace TetrisTests
         public void Rotate_Test()
         {
             // Arrange
-            block.Position = new Point(2, 2);
+            block.Position = new Point(1, 5);
             // Act
-            block.Rotate(new Point(1, 1));
+            block.Rotate(new Point(-1, -1));
             // Assert
-            Assert.AreEqual(new Point(3, 3), block.Position);
+            Assert.AreEqual(new Point(0, 4), block.Position);
         }
     }
 }

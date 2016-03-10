@@ -43,36 +43,37 @@ namespace Tetris
             if (point.Y < 0)
                 return false;
             if (board[point.X, point.Y - 1].Equals(Color.FromName("Black")))
-                return false;
+                return true;
 
-            return true;
+            return false;
         }
         public bool TryMoveRight()
         {
             if (point.Y > 10)
-             return false;
-            if (board[point.X, point.Y + 1].Equals(Color.FromName("Black")))
                 return false;
+            if (board[point.X, point.Y + 1].Equals(Color.FromName("Black")))
+                return true;
 
-            return true;
+            return false;
         }
         public bool TryMoveDown()
         {
             if(point.X > 20)
                 return false;
             if (board[point.X + 1, point.Y].Equals(Color.FromName("Black")))
-                return false;
+                return true;
 
-            return true;
+            return false;
         }
         public bool TryRotate(Point offset)
         {
-            if (point.X + offset.X > 20 | board[point.X + offset.X, point.Y].Equals(Color.FromName("Black")))
-                return false;
-            if (point.Y + offset.Y > 10 | board[point.X, point.Y + offset.Y].Equals(Color.FromName("Black")))
-                return false;
+            if (point.X + offset.X < 20 && point.X + offset.X >= 0 && board[point.X + offset.X, point.Y].Equals(Color.FromName("Black")))
+            {
+                if (point.Y + offset.Y < 10 && point.Y + offset.Y >= 0 && board[point.X, point.Y + offset.Y].Equals(Color.FromName("Black")))
+                    return true;
+            }
 
-            return true;
+            return false;
         }
         public void MoveLeft()
         {

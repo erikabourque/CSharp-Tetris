@@ -148,7 +148,7 @@ namespace TetrisTests
             int level = test.Level;
 
             // Assert
-            Assert.AreEqual()
+            //Assert.AreEqual()
         }
     }
 }

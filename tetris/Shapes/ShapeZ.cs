@@ -14,6 +14,7 @@ namespace Tetris
 
         public ShapeZ(IBoard board)
         {
+            blocks = new Block[4];
             rotationOffset = new Point[2, 4];
             currentRotation = 0;
             CreateRotationArray();
