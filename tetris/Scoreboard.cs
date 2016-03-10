@@ -79,7 +79,7 @@ namespace Tetris
                 score = score + (num * 100);
             }
 
-            // Recalculating level
+            // Recalculating level, always minimum of 1.
             level = Math.Min((linesCleared / 10) + 1, 10);
         }
 
