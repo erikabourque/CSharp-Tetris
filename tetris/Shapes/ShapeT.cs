@@ -11,20 +11,25 @@ namespace Tetris
     // Date: 10/03/2016
     // Version: 2.0
 
-    class ShapeT : Shape
+    public class ShapeT : Shape
     {
         IBoard board;
 
         public ShapeT(IBoard board)
         {
+            if (board == null)
+            {
+                throw new NullReferenceException("ShapeT constructor error.  Board is null: " + board);
+            }
+
             this.board = board;
             blocks = new Block[4];
 
             // Filling block array
-            blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 3), board);
-            blocks[1] = new Block(Color.FromName("Purple"), new Point(0, 4), board);
-            blocks[2] = new Block(Color.FromName("Purple"), new Point(0, 5), board);
-            blocks[3] = new Block(Color.FromName("Purple"), new Point(1, 4), board);
+            blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 4), board);
+            blocks[1] = new Block(Color.FromName("Purple"), new Point(0, 5), board);
+            blocks[2] = new Block(Color.FromName("Purple"), new Point(0, 6), board);
+            blocks[3] = new Block(Color.FromName("Purple"), new Point(1, 5), board);
 
             // Filling rotationOffset array
             CreateRotationArray();
@@ -40,28 +45,28 @@ namespace Tetris
             // blocks[1] is the block that never moves, rotation point
 
             // First Rotation
-            rotationOffset[0, 0] = new Point(1, -1);
-            rotationOffset[0, 1] = new Point(0, 0);
-            rotationOffset[0, 2] = new Point(-1, 1);
-            rotationOffset[0, 3] = new Point(-1, -1);
+            rotationOffset[1, 0] = new Point(-1, 1);
+            rotationOffset[1, 1] = new Point(0, 0);
+            rotationOffset[1, 2] = new Point(1, -1);
+            rotationOffset[1, 3] = new Point(-1, -1);
 
             // Second Rotation
-            rotationOffset[1, 0] = new Point(1, 1);
-            rotationOffset[1, 1] = new Point(0, 0);
-            rotationOffset[1, 2] = new Point(-1, -1);
-            rotationOffset[1, 3] = new Point(1, -1);
+            rotationOffset[2, 0] = new Point(1, 1);
+            rotationOffset[2, 1] = new Point(0, 0);
+            rotationOffset[2, 2] = new Point(-1, -1);
+            rotationOffset[2, 3] = new Point(-1, 1);
 
             // Third Rotation
-            rotationOffset[2, 0] = new Point(-1, 1);
-            rotationOffset[2, 1] = new Point(0, 0);
-            rotationOffset[2, 2] = new Point(1, -1);
-            rotationOffset[2, 3] = new Point(1, 1);
-
-            // Fourth Rotation
-            rotationOffset[3, 0] = new Point(-1, -1);
+            rotationOffset[3, 0] = new Point(1, -1);
             rotationOffset[3, 1] = new Point(0, 0);
-            rotationOffset[3, 2] = new Point(1, 1);
-            rotationOffset[3, 3] = new Point(-1, 1);
+            rotationOffset[3, 2] = new Point(-1, 1);
+            rotationOffset[3, 3] = new Point(1, 1);
+
+            // Fourth Rotation, return to initial positions
+            rotationOffset[0, 0] = new Point(-1, -1);
+            rotationOffset[0, 1] = new Point(0, 0);
+            rotationOffset[0, 2] = new Point(1, 1);
+            rotationOffset[0, 3] = new Point(1, -1);
         }
 
         public override Block this[int index]

@@ -7,12 +7,12 @@ using Tetris;
 
 namespace TetrisTests
 {
-    public class BlockTestBoard : IBoard
+    public class ColorableTestBoard : IBoard
     {
         private Color[,] board = new Color[20, 10];
 
         // Constructor
-        public BlockTestBoard()
+        public ColorableTestBoard()
         {
             // Fill board with black - default no-shape color
             for (int i = 0; i < board.GetLength(0); i++)
@@ -128,7 +128,7 @@ namespace TetrisTests
         public void TryMoveLeft_Valid()
         {
             // Arrange
-            IBoard testboard = new BlockTestBoard();
+            IBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(0, 1), testboard);
             bool result;
 
@@ -143,7 +143,7 @@ namespace TetrisTests
         public void TryMoveLeft_InvalidBoardEdge()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(0, 0), testboard);
             bool result;
 
@@ -158,7 +158,7 @@ namespace TetrisTests
         public void TryMoveLeft_InvalidBlocked()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             testboard[0, 0] = Color.Red;
             Block block = new Block(Color.Blue, new Point(0, 1), testboard);
             bool result;
@@ -174,7 +174,7 @@ namespace TetrisTests
         public void TryMoveRight_Valid()
         {
             // Arrange
-            IBoard testboard = new BlockTestBoard();
+            IBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(0, 0), testboard);
             bool result;
 
@@ -189,7 +189,7 @@ namespace TetrisTests
         public void TryMoveRight_InvalidBoardEdge()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(0, 9), testboard);
             bool result;
 
@@ -204,7 +204,7 @@ namespace TetrisTests
         public void TryMoveRight_InvalidBlocked()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             testboard[0, 1] = Color.Red;
             Block block = new Block(Color.Blue, new Point(0, 0), testboard);
             bool result;
@@ -220,7 +220,7 @@ namespace TetrisTests
         public void TryMoveDown_Valid()
         {
             // Arrange
-            IBoard testboard = new BlockTestBoard();
+            IBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(0, 0), testboard);
             bool result;
 
@@ -235,7 +235,7 @@ namespace TetrisTests
         public void TryMoveDown_InvalidBoardEdge()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(19, 0), testboard);
             bool result;
 
@@ -250,7 +250,7 @@ namespace TetrisTests
         public void TryMoveDown_InvalidBlocked()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             testboard[1, 0] = Color.Red;
             Block block = new Block(Color.Blue, new Point(0, 0), testboard);
             bool result;
@@ -269,7 +269,7 @@ namespace TetrisTests
         public void TryRotate_Valid()
         {
             // Arrange
-            IBoard testboard = new BlockTestBoard();
+            IBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(5, 5), testboard);
             Point offset = new Point(1, 1);
             bool result;
@@ -285,7 +285,7 @@ namespace TetrisTests
         public void TryRotate_InvalidBoardEdgeLeft()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(5, 9), testboard);
             Point offset = new Point(1, 1);
             bool result;
@@ -301,7 +301,7 @@ namespace TetrisTests
         public void TryRotate_InvalidBoardEdgeRight()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(5, 0), testboard);
             Point offset = new Point(1, -1);
             bool result;
@@ -317,7 +317,7 @@ namespace TetrisTests
         public void TryRotate_InvalidBoardEdgeDown()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             Block block = new Block(Color.Blue, new Point(19, 5), testboard);
             Point offset = new Point(1, 1);
             bool result;
@@ -333,7 +333,7 @@ namespace TetrisTests
         public void TryRotate_InvalidBlocked()
         {
             // Arrange
-            BlockTestBoard testboard = new BlockTestBoard();
+            ColorableTestBoard testboard = new ColorableTestBoard();
             testboard[6, 6] = Color.Red;
             Block block = new Block(Color.Blue, new Point(5, 5), testboard);
             Point offset = new Point(1, 1);
