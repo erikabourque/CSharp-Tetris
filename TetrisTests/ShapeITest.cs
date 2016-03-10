@@ -215,17 +215,18 @@ namespace TetrisTests
         {
             // Arrange
             createBoard();
-            board[4, 5] = Color.FromName("Red");
+            //board[4, 5] = Color.FromName("Red");
             createShape();
             // Act
             shapeI.MoveDown();
             shapeI.Rotate();
+            board[4, 5] = Color.FromName("Red");
             shapeI.MoveDown();
             // Assert
-            Assert.AreEqual(new Point(3, 5), shapeI[0].Position);
-            Assert.AreEqual(new Point(2, 5), shapeI[1].Position);
-            Assert.AreEqual(new Point(1, 5), shapeI[2].Position);
-            Assert.AreEqual(new Point(0, 5), shapeI[3].Position);
+            Assert.AreEqual(new Point(4, 5), shapeI[0].Position);
+            Assert.AreEqual(new Point(3, 5), shapeI[1].Position);
+            Assert.AreEqual(new Point(2, 5), shapeI[2].Position);
+            Assert.AreEqual(new Point(1, 5), shapeI[3].Position);
         }
 
         [TestMethod]
@@ -318,13 +319,13 @@ namespace TetrisTests
             // Act
             shapeI.MoveDown();
             shapeI.Rotate();
-            board[0, 4] = Color.FromName("Red");
+            board[1, 4] = Color.FromName("Red");
             shapeI.Rotate();
             // Assert
-            Assert.AreEqual(new Point(0, 5), shapeI[0].Position);
-            Assert.AreEqual(new Point(1, 5), shapeI[1].Position);
-            Assert.AreEqual(new Point(2, 5), shapeI[2].Position);
-            Assert.AreEqual(new Point(3, 5), shapeI[3].Position);
+            Assert.AreEqual(new Point(3, 5), shapeI[0].Position);
+            Assert.AreEqual(new Point(2, 5), shapeI[1].Position);
+            Assert.AreEqual(new Point(1, 5), shapeI[2].Position);
+            Assert.AreEqual(new Point(0, 5), shapeI[3].Position);
         }
     }
 }

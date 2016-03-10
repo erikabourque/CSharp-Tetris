@@ -57,6 +57,7 @@
     <Compile Include="ScoreboardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeITest.cs" />
+    <Compile Include="ShapeLTest.cs" />
     <Compile Include="ShapeOTest.cs" />
     <Compile Include="ShapeSTest.cs" />
   </ItemGroup>

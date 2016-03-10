@@ -40,13 +40,13 @@ namespace Tetris
             //first rotation
             rotationOffset[0, 0] = new Point(0,0);
             rotationOffset[0, 1] = new Point(-1,-1);
-            rotationOffset[0, 2] = new Point(-1,1);
-            rotationOffset[0, 3] = new Point(0,2);
+            rotationOffset[0, 2] = new Point(0,2);
+            rotationOffset[0, 3] = new Point(-1,1);
             //second rotation
             rotationOffset[1, 0] = new Point(0,0);
             rotationOffset[1, 1] = new Point(1,1);
-            rotationOffset[1, 2] = new Point(1,-1);
-            rotationOffset[1, 3] = new Point(0,-2);
+            rotationOffset[1, 2] = new Point(0,-2);
+            rotationOffset[1, 3] = new Point(1,-1);
         }
 
         public override void MoveLeft()
@@ -158,7 +158,6 @@ namespace Tetris
 
         public override void Rotate()
         {
-            currentRotation++;
             if (currentRotation == 2)
             {
                 currentRotation = 0;
@@ -169,6 +168,7 @@ namespace Tetris
                 blocks[2].Rotate(rotationOffset[currentRotation, 2]);
                 blocks[3].Rotate(rotationOffset[currentRotation, 3]);
             }
+            currentRotation++;
         }
 
         public override void Reset()
