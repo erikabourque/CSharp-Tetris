@@ -14,6 +14,9 @@ namespace Tetris
 
         public ShapeZ(IBoard board)
         {
+            rotationOffset = new Point[2, 4];
+            currentRotation = 0;
+            CreateRotationArray();
             this.board = board;
             blocks[0] = new Block(Color.FromName("Cyan"), new Point(0, 4), board);
             blocks[1] = new Block(Color.FromName("Cyan"), new Point(0, 5), board);

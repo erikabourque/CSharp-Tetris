@@ -13,13 +13,14 @@ namespace Tetris
 
         public ShapeT(IBoard board)
         {
+            rotationOffset = new Point[2, 4];
+            currentRotation = 0;
+            CreateRotationArray();
             this.board = board;
             blocks[0] = blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 3), board);
             blocks[0] = blocks[1] = new Block(Color.FromName("Purple"), new Point(0, 4), board);
             blocks[0] = blocks[2] = new Block(Color.FromName("Purple"), new Point(0, 5), board);
             blocks[0] = blocks[3] = new Block(Color.FromName("Purple"), new Point(1, 4), board);
-
-            CreateRotationArray();
         }
 
         private void CreateRotationArray()

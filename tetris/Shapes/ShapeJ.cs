@@ -14,6 +14,10 @@ namespace Tetris
 
         public ShapeJ(IBoard board)
         {
+            rotationOffset = new Point[2, 4];
+            currentRotation = 0;
+            CreateRotationArray();
+            this.board = board;
             blocks[0] = new Block(Color.FromName("Orange"), new Point(0, 4), board);
             blocks[1] = new Block(Color.FromName("Orange"), new Point(0, 5), board);
             blocks[2] = new Block(Color.FromName("Orange"), new Point(0, 6), board);
