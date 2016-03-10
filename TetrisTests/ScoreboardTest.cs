@@ -130,7 +130,7 @@ namespace TetrisTests
             int level = test.Level;
 
             // Assert
-            Assert.AreEqual(0, level);
+            Assert.AreEqual(1, level);
         }
 
         [TestMethod]
@@ -148,7 +148,7 @@ namespace TetrisTests
             int level = test.Level;
 
             // Assert
-            Assert.AreEqual(1, level);
+            Assert.AreEqual(2, level);
         }
 
         [TestMethod]
