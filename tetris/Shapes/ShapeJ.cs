@@ -10,9 +10,6 @@ namespace Tetris
     public class ShapeJ: Shape
     {
         int length = 4;
-        Block[] blocks = new Block[4];
-        int currentRotation = 0;
-        Point[,] rotationOffset = new Point[4, 4];
 
         public ShapeJ()
         {
@@ -27,6 +24,11 @@ namespace Tetris
             get { return length; }
         }
 
+
+        public override Block this[int index]
+        {
+            get { return blocks[index]; }
+        }
         private void CreateRotationArray()
         {
             //first rotation
