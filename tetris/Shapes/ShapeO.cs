@@ -16,6 +16,7 @@ namespace Tetris
         public ShapeO(IBoard board)
         {
             this.board = board;
+            blocks = new Block[4];
             blocks[0] = new Block(Color.FromName("Blue"), new Point(0, 4), board);
             blocks[1] = new Block(Color.FromName("Blue"), new Point(0, 5), board);
             blocks[2] = new Block(Color.FromName("Blue"), new Point(1, 4), board);
