@@ -9,12 +9,13 @@ namespace Tetris
 {
     // Author: Erika Bourque
     // Date: 10/03/2016
-    // Version: 2.0
+    // Version: 3.0
 
     public class ShapeT : Shape
     {
         IBoard board;
 
+        // Constructor, requires IBoard object.
         public ShapeT(IBoard board)
         {
             if (board == null)
@@ -38,6 +39,7 @@ namespace Tetris
             currentRotation = 0;
         }
 
+        // Fills the rotationOffset array with appropriate offsets.
         private void CreateRotationArray()
         {
             rotationOffset = new Point[4, 4];
@@ -69,6 +71,7 @@ namespace Tetris
             rotationOffset[0, 3] = new Point(1, -1);
         }
 
+        // Indexer. Getter only.
         public override Block this[int index]
         {
             get
@@ -84,6 +87,7 @@ namespace Tetris
             }
         }
 
+        // Returns the length of the blocks array. Getter only.
         public override int Length
         {
             get
@@ -92,6 +96,8 @@ namespace Tetris
             }
         }
 
+        // Makes the shape move down as many times as possible.
+        // Fires addtopile event.
         public override void Drop()
         {
             bool canDrop = true;
@@ -121,6 +127,7 @@ namespace Tetris
             OnJoinPile();
         }
 
+        // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
             bool canDrop = true;
@@ -148,6 +155,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
             // Checking if its possible, returns if it can't
@@ -166,6 +174,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape to the right if possible.
         public override void MoveRight()
         {
             // Checking if its possible, returns if it can't
@@ -184,14 +193,18 @@ namespace Tetris
             }
         }
 
+        // Returns the shape to its starting position and rotation
         public override void Reset()
         {
-            blocks[0].Position = new Point(0, 3);
-            blocks[1].Position = new Point(0, 4);
-            blocks[2].Position = new Point(0, 5);
-            blocks[3].Position = new Point(1, 4);
+            blocks[0].Position = new Point(0, 4);
+            blocks[1].Position = new Point(0, 5);
+            blocks[2].Position = new Point(0, 6);
+            blocks[3].Position = new Point(1, 5);
+
+            currentRotation = 0;
         }
 
+        // Rotates the shape according to its offsets if possible.
         public override void Rotate()
         {
             bool canRotate = true;
