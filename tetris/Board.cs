@@ -9,7 +9,7 @@ namespace Tetris
 {
     // Author: Erika Bourque
     // Date: 09/03/2016
-    // Version: 6.0
+    // Version: 7.0
 
     public class Board : IBoard
     {
@@ -21,6 +21,15 @@ namespace Tetris
         // Constructor
         public Board()
         {
+            // Fill board with black - default no-shape color
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j=0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = Color.Black;
+                }
+            }
+
             // Creating proxy
             shapeFactory = new ShapeProxy(this);
             shape = (IShape)shapeFactory;
@@ -94,6 +103,11 @@ namespace Tetris
         // Assuming rank == dimension, 0(rows) or 1(cols) dimension
         public int GetLength(int rank)
         {
+            if ((rank != 0) && (rank != 1))
+            {
+                throw new ArgumentException("Board GetLength error.  Rank is invalid number: " + rank);                
+            }
+
             return board.GetLength(rank);
         }
     }
