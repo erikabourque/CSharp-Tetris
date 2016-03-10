@@ -11,13 +11,15 @@ namespace Tetris
     {
         //O does not rotate
         int length = 4;
+        IBoard board;
 
-        public ShapeO()
+        public ShapeO(IBoard board)
         {
-            blocks[0] = new Block(Color.FromName("Blue"), new Point(0, 4));
-            blocks[1] = new Block(Color.FromName("Blue"), new Point(0, 5));
-            blocks[2] = new Block(Color.FromName("Blue"), new Point(1, 4));
-            blocks[3] = new Block(Color.FromName("Blue"), new Point(1, 5));
+            this.board = board;
+            blocks[0] = new Block(Color.FromName("Blue"), new Point(0, 4), board);
+            blocks[1] = new Block(Color.FromName("Blue"), new Point(0, 5), board);
+            blocks[2] = new Block(Color.FromName("Blue"), new Point(1, 4), board);
+            blocks[3] = new Block(Color.FromName("Blue"), new Point(1, 5), board);
         }
 
         public override int Length
@@ -70,7 +72,7 @@ namespace Tetris
             int position = 19;
             for(int i = firstBlock.X; i < 20; i ++)
             {
-                if((board[firstBlock.X, firstBlock.Y].Equals(Color.FromName("Black")) || board[secondBlock.X, secondBlock.Y].Equals(Color.FromName("Black")))
+                if((board[firstBlock.X, firstBlock.Y].Equals(Color.FromName("Black")) || board[secondBlock.X, secondBlock.Y].Equals(Color.FromName("Black"))))
                 {
                     position = i - 1;
                     break;
@@ -90,5 +92,7 @@ namespace Tetris
             blocks[2].Position = new Point(1,4);
             blocks[3].Position = new Point(1,5);
         }
+
+        public override void Rotate() { }
     }
 }

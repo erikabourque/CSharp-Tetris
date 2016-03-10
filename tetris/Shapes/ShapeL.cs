@@ -10,13 +10,15 @@ namespace Tetris
     public class ShapeL: Shape
     {
         int length = 4;
+        IBoard board;
 
-        public ShapeL()
+        public ShapeL(IBoard board)
         {
-            blocks[0] = new Block(Color.FromName("Red"), new Point(0, 4));
-            blocks[1] = new Block(Color.FromName("Red"), new Point(0, 5));
-            blocks[2] = new Block(Color.FromName("Red"), new Point(0, 6));
-            blocks[3] = new Block(Color.FromName("Red"), new Point(1, 4));
+            this.board = board;
+            blocks[0] = new Block(Color.FromName("Red"), new Point(0, 4), board);
+            blocks[1] = new Block(Color.FromName("Red"), new Point(0, 5), board);
+            blocks[2] = new Block(Color.FromName("Red"), new Point(0, 6), board);
+            blocks[3] = new Block(Color.FromName("Red"), new Point(1, 4), board);
         }
 
         public override int Length
