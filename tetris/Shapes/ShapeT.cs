@@ -14,18 +14,12 @@ namespace Tetris
         public ShapeT(IBoard board)
         {
             this.board = board;
+            blocks[0] = blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 3), board);
+            blocks[0] = blocks[1] = new Block(Color.FromName("Purple"), new Point(0, 4), board);
+            blocks[0] = blocks[2] = new Block(Color.FromName("Purple"), new Point(0, 5), board);
+            blocks[0] = blocks[3] = new Block(Color.FromName("Purple"), new Point(1, 4), board);
 
-            // Filling block array
-            blocks[0] = new Block(Color.FromName("Purple"), new Point(0, 3), board);
-            blocks[1] = new Block(Color.FromName("Purple"), new Point(0, 4), board);
-            blocks[2] = new Block(Color.FromName("Purple"), new Point(0, 5), board);
-            blocks[3] = new Block(Color.FromName("Purple"), new Point(1, 4), board);
-
-            // Filling rotationOffset array
             CreateRotationArray();
-
-            // Initializing current rotation
-            currentRotation = 0;
         }
 
         private void CreateRotationArray()
@@ -84,58 +78,12 @@ namespace Tetris
 
         public override void Drop()
         {
-            bool canDrop = true;
-            
-            while (canDrop)
-            {
-                // Checking if its possible, returns if it can't
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    if (!blocks[i].TryMoveDown())
-                    {
-                        canDrop = false;
-                    }
-                }
-
-                if (canDrop)
-                {
-                    // Reaching here means all trys successful
-                    for (int i = 0; i < blocks.Length; i++)
-                    {
-                        blocks[i].MoveDown();
-                    }
-                }
-            }
-
-            // Means reached the pile.
-            OnJoinPile();
+            throw new NotImplementedException();
         }
 
         public override void MoveDown()
         {
-            bool canDrop = true;
-            // Checking if its possible, returns if it can't
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                if (!blocks[i].TryMoveDown())
-                {
-                    canDrop = false;
-                }
-            }
-
-            if (canDrop)
-            {
-                // Reaching here means all trys successful
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    blocks[i].MoveDown();
-                }
-            }
-            else
-            {
-                // Means reached the pile
-                OnJoinPile();
-            }            
+            throw new NotImplementedException();
         }
 
         public override void MoveLeft()
@@ -150,68 +98,21 @@ namespace Tetris
             }
 
             // Reaching here means all trys successful
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                blocks[i].MoveLeft();
-            }
         }
 
         public override void MoveRight()
         {
-            // Checking if its possible, returns if it can't
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                if (!blocks[i].TryMoveRight())
-                {
-                    return;
-                }
-            }
-
-            // Reaching here means all trys successful
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                blocks[i].MoveRight();
-            }
+            throw new NotImplementedException();
         }
 
         public override void Reset()
         {
-            blocks[0].Position = new Point(0, 3);
-            blocks[1].Position = new Point(0, 4);
-            blocks[2].Position = new Point(0, 5);
-            blocks[3].Position = new Point(1, 4);
+            throw new NotImplementedException();
         }
 
         public override void Rotate()
         {
-            bool canRotate = true;
-            int newRotation = currentRotation + 1;
-
-            if (newRotation == 4)
-            {
-                newRotation = 0;
-            }
-
-            // Check if all pieces can rotate
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                if (!blocks[i].TryRotate(rotationOffset[newRotation, i]))
-                {
-                    canRotate = false;
-                }
-            }
-
-            if (canRotate)
-            {
-                // Rotate each piece
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    blocks[i].Rotate(rotationOffset[newRotation, i]);
-                }
-
-                // Make new rotation the current rotation
-                currentRotation = newRotation;
-            }
+            throw new NotImplementedException();
         }
     }
 }
