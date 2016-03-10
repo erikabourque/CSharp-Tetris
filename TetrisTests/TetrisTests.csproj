@@ -53,9 +53,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BlockTest.cs" />
     <Compile Include="ScoreboardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoardTest.cs" />
+    <Compile Include="ShapeITest.cs" />
+    <Compile Include="ShapeOTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\tetris\Tetris.csproj">
