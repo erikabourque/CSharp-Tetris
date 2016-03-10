@@ -20,10 +20,11 @@ namespace Tetris
             point.Y = 0;
         }
 
-        public Block(Color colour, Point point)
+        public Block(Color colour, Point point, IBoard board)
         {
             this.colour = colour;
             this.point = point;
+            this.board = board;
         }
 
         public Color Color
@@ -41,7 +42,7 @@ namespace Tetris
         {
             if (point.Y < 0)
                 return false;
-            if (board[point.X, point.Y - 1].color.Equals(Color.FromName("Black")))
+            if (board[point.X, point.Y - 1].Equals(Color.FromName("Black")))
                 return false;
 
             return true;
@@ -50,7 +51,7 @@ namespace Tetris
         {
             if (point.Y > 10)
              return false;
-            if (board[point.X, point.Y + 1].color.Equals(Color.FromName("Black")))
+            if (board[point.X, point.Y + 1].Equals(Color.FromName("Black")))
                 return false;
 
             return true;
