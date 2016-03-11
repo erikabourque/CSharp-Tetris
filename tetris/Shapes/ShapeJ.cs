@@ -48,7 +48,7 @@ namespace Tetris
             rotationOffset[1, 2] = new Point(1, -1);
             rotationOffset[1, 3] = new Point(0, -2);
             //third rotation
-            rotationOffset[2, 0] = new Point(1, 1);
+            rotationOffset[2, 0] = new Point(-1, -1);
             rotationOffset[2, 1] = new Point(0, 0);
             rotationOffset[2, 2] = new Point(1, 1);
             rotationOffset[2, 3] = new Point(2, 0);
