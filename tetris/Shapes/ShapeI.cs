@@ -175,7 +175,7 @@ namespace Tetris
             else
             {
                 currentRotation = 0;
-                if (blocks[0].TryRotate(rotationOffset[1, 0]) && blocks[1].TryRotate(rotationOffset[1, 2]) && blocks[3].TryRotate(rotationOffset[1, 3]))
+                if (blocks[0].TryRotate(rotationOffset[1, 0]) && blocks[1].TryRotate(rotationOffset[1, 1]) && blocks[3].TryRotate(rotationOffset[1, 3]))
                 {
                     blocks[0].Rotate(rotationOffset[1, 0]);
                     blocks[1].Rotate(rotationOffset[1, 1]);

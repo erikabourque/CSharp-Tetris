@@ -250,16 +250,17 @@ namespace TetrisTests
         {
             // Arrange
             createBoard();
-            board[0, 6] = Color.FromName("Red");
+            board[5, 5] = Color.FromName("Red");
             createShape();
             // Act
+            shapeI.MoveDown();
             shapeI.Rotate();
             shapeI.Drop();
             // Assert
-            Assert.AreEqual(new Point(0, 5), shapeI[0].Position);
-            Assert.AreEqual(new Point(1, 5), shapeI[1].Position);
+            Assert.AreEqual(new Point(4, 5), shapeI[0].Position);
+            Assert.AreEqual(new Point(3, 5), shapeI[1].Position);
             Assert.AreEqual(new Point(2, 5), shapeI[2].Position);
-            Assert.AreEqual(new Point(3, 5), shapeI[3].Position);
+            Assert.AreEqual(new Point(1, 5), shapeI[3].Position);
         }
 
         [TestMethod]

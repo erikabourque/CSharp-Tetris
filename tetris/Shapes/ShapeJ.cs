@@ -46,7 +46,7 @@ namespace Tetris
             rotationOffset[1, 0] = new Point(-1, 1);
             rotationOffset[1, 1] = new Point(0, 0);
             rotationOffset[1, 2] = new Point(1, -1);
-            rotationOffset[1, 3] = new Point(0, 2);
+            rotationOffset[1, 3] = new Point(0, -2);
             //third rotation
             rotationOffset[2, 0] = new Point(1, 1);
             rotationOffset[2, 1] = new Point(0, 0);
@@ -222,7 +222,6 @@ namespace Tetris
 
         public override void Rotate()
         {
-            currentRotation++;
             if (currentRotation == 4)
             {
                 currentRotation = 0;
@@ -234,7 +233,7 @@ namespace Tetris
                 blocks[2].Rotate(rotationOffset[currentRotation, 2]);
                 blocks[3].Rotate(rotationOffset[currentRotation, 3]);
             }
-
+            currentRotation++;
         }
 
         public override void Reset()
