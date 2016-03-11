@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Tetris
 {
-    public class ShapeL: Shape
+    public class ShapeL : Shape
     {
         int length = 4;
         IBoard board;
@@ -51,13 +51,13 @@ namespace Tetris
             //third rotation
             rotationOffset[2, 0] = new Point(-1, -1);
             rotationOffset[2, 1] = new Point(0, 0);
-            rotationOffset[2, 2] = new Point(1,1);
+            rotationOffset[2, 2] = new Point(1, 1);
             rotationOffset[2, 3] = new Point(0, -2);
             //fourth rotation
-            rotationOffset[3, 0] = new Point(-1, -1);
+            rotationOffset[3, 0] = new Point(1, -1);
             rotationOffset[3, 1] = new Point(0, 0);
-            rotationOffset[3, 2] = new Point(1, 1);
-            rotationOffset[3, 3] = new Point(0, -2);
+            rotationOffset[3, 2] = new Point(-1, 1);
+            rotationOffset[3, 3] = new Point(2, 0);
         }
 
         public override void MoveLeft()
@@ -72,7 +72,7 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[0].TryMoveLeft() && blocks[1].TryMoveLeft() && blocks[2].TryMoveLeft())
                 {
@@ -82,7 +82,7 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            else if(currentRotation == 2)
+            else if (currentRotation == 2)
             {
                 if (blocks[2].TryMoveLeft() && blocks[3].TryMoveLeft())
                 {
@@ -102,7 +102,7 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            
+
         }
 
         public override void MoveRight()
@@ -117,7 +117,7 @@ namespace Tetris
                     blocks[3].MoveRight();
                 }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[1].TryMoveRight() && blocks[2].TryMoveRight() && blocks[3].TryMoveRight())
                 {
@@ -161,7 +161,7 @@ namespace Tetris
                     blocks[3].MoveDown();
                 }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[0].TryMoveDown() && blocks[3].TryMoveDown())
                 {
@@ -224,7 +224,7 @@ namespace Tetris
 
         public override void Rotate()
         {
-            if(currentRotation == 4)
+            if (currentRotation == 4)
             {
                 currentRotation = 0;
             }
