@@ -7,12 +7,15 @@ using System.Drawing;
 
 namespace Tetris
 {
+    // Author: Georgi Veselinov Kichev
+    // Date: 10/03/2016
+    // Version: 1.0
     public class ShapeO : Shape
     {
-        //O does not rotate
         int length = 4;
         IBoard board;
 
+        // Constructor, requires IBoard object.
         public ShapeO(IBoard board)
         {
             blocks = new Block[4];
@@ -24,16 +27,19 @@ namespace Tetris
             blocks[3] = new Block(Color.FromName("Blue"), new Point(1, 5), board);
         }
 
+        // Returns the length of the blocks array. Getter only.
         public override int Length
         {
             get { return length; }
         }
 
+        // Indexer. Getter only.
         public override Block this[int index]
         {
             get { return blocks[index]; }
         }
 
+        // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
             if(blocks[0].TryMoveLeft() && blocks[2].TryMoveLeft())
@@ -45,6 +51,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape to the right if possible.
         public override void MoveRight()
         {
             if (blocks[1].TryMoveRight() && blocks[3].TryMoveRight())
@@ -56,6 +63,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
             if (blocks[2].TryMoveDown() && blocks[3].TryMoveDown())
@@ -65,8 +73,15 @@ namespace Tetris
                 blocks[2].MoveDown();
                 blocks[3].MoveDown();
             }
+            else
+            {
+                // Means reached the pile
+                OnJoinPile();
+            }
         }
 
+        // Makes the shape move down as many times as possible.
+        // Fires addtopile event.
         public override void Drop()
         {
             bool canDrop = true;
@@ -96,6 +111,7 @@ namespace Tetris
             OnJoinPile();
         }
 
+        // Returns the shape to its starting position and rotation.
         public override void Reset()
         {
             blocks[0].Position = new Point(0,4);
@@ -104,6 +120,7 @@ namespace Tetris
             blocks[3].Position = new Point(1,5);
         }
 
+        // Rotating O results in same position, thus O does not rotate.
         public override void Rotate() { }
     }
 }
