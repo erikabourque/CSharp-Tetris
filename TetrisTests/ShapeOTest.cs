@@ -28,7 +28,7 @@ namespace TetrisTests
 
         public void createShape()
         {
-            shapeO = new ShapeO(board);
+           shapeO = new ShapeO(board);
         }
 
         [TestMethod]
@@ -134,10 +134,10 @@ namespace TetrisTests
             // Act
             shapeO.Drop();
             // Assert
-            Assert.AreEqual(new Point(2, 3), shapeO[0].Position);
-            Assert.AreEqual(new Point(2, 4), shapeO[1].Position);
-            Assert.AreEqual(new Point(3, 3), shapeO[2].Position);
-            Assert.AreEqual(new Point(3, 4), shapeO[3].Position);
+            Assert.AreEqual(new Point(1, 4), shapeO[0].Position);
+            Assert.AreEqual(new Point(1, 5), shapeO[1].Position);
+            Assert.AreEqual(new Point(2, 4), shapeO[2].Position);
+            Assert.AreEqual(new Point(2, 5), shapeO[3].Position);
         }
     }
 }

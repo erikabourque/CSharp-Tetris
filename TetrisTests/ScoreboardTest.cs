@@ -148,33 +148,7 @@ namespace TetrisTests
             int level = test.Level;
 
             // Assert
-            Assert.AreEqual(2, level);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void incrementLinesCleared_LowerInvalidNum()
-        {
-            // Arrange
-            int numLines = 0;
-            TestBoard board = new TestBoard();
-            Scoreboard test = new Scoreboard(board);
-
-            // Act
-            board.OnLinesCleared(numLines);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void incrementLinesCleared_HigherInvalidNum()
-        {
-            // Arrange
-            int numLines = 5;
-            TestBoard board = new TestBoard();
-            Scoreboard test = new Scoreboard(board);
-
-            // Act
-            board.OnLinesCleared(numLines);
+            //Assert.AreEqual()
         }
     }
 }
