@@ -50,10 +50,10 @@ namespace Tetris
             rotationOffset[2, 2] = new Point(1,1);
             rotationOffset[2, 3] = new Point(0, -2);
             //fourth rotation
-            rotationOffset[3, 0] = new Point(1, -1);
+            rotationOffset[3, 0] = new Point(-1, -1);
             rotationOffset[3, 1] = new Point(0, 0);
-            rotationOffset[3, 2] = new Point(-1, 1);
-            rotationOffset[3, 3] = new Point(2, 0);
+            rotationOffset[3, 2] = new Point(1, 1);
+            rotationOffset[3, 3] = new Point(0, -2);
         }
 
         public override void MoveLeft()

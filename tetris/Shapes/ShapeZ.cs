@@ -32,7 +32,7 @@ namespace Tetris
         // Returns the length of the blocks array. Getter only.
         public override int Length
         {
-            get { return length; }
+            get { return blocks.Length; }
         }
 
         // Indexer. Getter only.

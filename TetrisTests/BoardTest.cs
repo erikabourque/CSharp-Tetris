@@ -96,7 +96,7 @@ namespace TetrisTests
             length = test.GetLength(2);
         }
 
-        /*
+        
         [TestMethod]
         public void GameOverEvent_Valid()
         {
@@ -112,6 +112,6 @@ namespace TetrisTests
 
             // Assert
             Assert.AreEqual(true, obs.gameIsOver);
-        } */
+        }
     }
 }
