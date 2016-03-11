@@ -99,7 +99,7 @@ namespace Tetris
             for (int i = 0; i < shape.Length; i++)
             {
                 coords = shape[i].Position;
-                board[coords.Y, coords.X] = shape[i].Color;
+                board[coords.X, coords.Y] = shape[i].Color;
             }
 
             // Check for rows cleared
