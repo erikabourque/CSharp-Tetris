@@ -7,10 +7,6 @@ using System.Drawing;
 
 namespace Tetris
 {
-    // Author: Georgi Veselinov Kichev, Erika Bourque
-    // Date: 10/03/2016
-    // Version: 5.0
-
     public class Block
     {
         private IBoard board;
@@ -94,7 +90,7 @@ namespace Tetris
             else
             {
                 return false;
-            }            
+            }
         }
 
         // Moves the block to the left.
