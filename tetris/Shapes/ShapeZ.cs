@@ -19,6 +19,7 @@ namespace Tetris
             currentRotation = 0;
             CreateRotationArray();
             this.board = board;
+            blocks = new Block[4];
             blocks[0] = new Block(Color.FromName("Cyan"), new Point(0, 4), board);
             blocks[1] = new Block(Color.FromName("Cyan"), new Point(0, 5), board);
             blocks[2] = new Block(Color.FromName("Cyan"), new Point(1, 5), board);
