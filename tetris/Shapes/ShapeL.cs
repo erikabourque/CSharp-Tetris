@@ -46,9 +46,9 @@ namespace Tetris
             rotationOffset[1, 0] = new Point(-1, 1);
             rotationOffset[1, 1] = new Point(0, 0);
             rotationOffset[1, 2] = new Point(1, -1);
-            rotationOffset[1, 3] = new Point(2, 0);
+            rotationOffset[1, 3] = new Point(-2, 0);
             //third rotation
-            rotationOffset[2, 0] = new Point(1, 1);
+            rotationOffset[2, 0] = new Point(-1, -1);
             rotationOffset[2, 1] = new Point(0, 0);
             rotationOffset[2, 2] = new Point(1,1);
             rotationOffset[2, 3] = new Point(0, -2);
@@ -194,72 +194,35 @@ namespace Tetris
 
         public override void Drop()
         {
-            int position = 19;
-            if (currentRotation == 0)
+            bool canDrop = true;
+
+            while (canDrop)
             {
-                for (int i = blocks[3].Position.X; i < 20; i++)
+                // Checking if its possible, returns if it can't
+                for (int i = 0; i < blocks.Length; i++)
                 {
-                    if (!(board[i - 1, blocks[1].Position.Y].Equals(Color.FromName("Black"))) || !(board[i - 1, blocks[2].Position.Y].Equals(Color.FromName("Black"))) && !(board[i, blocks[3].Position.Y].Equals(Color.FromName("Black"))))
+                    if (!blocks[i].TryMoveDown())
                     {
-                        position = i - 1;
-                        break;
+                        canDrop = false;
                     }
                 }
-                blocks[0].Position = new Point(position - 1, blocks[0].Position.Y);
-                blocks[1].Position = new Point(position - 1, blocks[1].Position.Y);
-                blocks[2].Position = new Point(position - 1, blocks[2].Position.Y);
-                blocks[3].Position = new Point(position, blocks[3].Position.Y);
-            }
-            else if(currentRotation == 1)
-            {
-                for (int i = blocks[3].Position.X; i < 20; i++)
+
+                if (canDrop)
                 {
-                    if (!(board[i - 1, blocks[0].Position.Y].Equals(Color.FromName("Black"))) || !(board[i - 1, blocks[3].Position.Y].Equals(Color.FromName("Black"))))
+                    // Reaching here means all trys successful
+                    for (int i = 0; i < blocks.Length; i++)
                     {
-                        position = i - 1;
-                        break;
+                        blocks[i].MoveDown();
                     }
                 }
-                blocks[0].Position = new Point(position, blocks[0].Position.Y);
-                blocks[1].Position = new Point(position - 1, blocks[1].Position.Y);
-                blocks[2].Position = new Point(position - 2, blocks[2].Position.Y);
-                blocks[3].Position = new Point(position, blocks[3].Position.Y);
             }
-            else if(currentRotation == 2)
-            {
-                for (int i = blocks[0].Position.X; i < 20; i++)
-                {
-                    if (!(board[i, blocks[0].Position.Y].Equals(Color.FromName("Black"))) || !(board[i, blocks[1].Position.Y].Equals(Color.FromName("Black"))) && !(board[i, blocks[2].Position.Y].Equals(Color.FromName("Black"))))
-                    {
-                        position = i - 1;
-                        break;
-                    }
-                }
-                blocks[0].Position = new Point(position, blocks[0].Position.Y);
-                blocks[1].Position = new Point(position, blocks[1].Position.Y);
-                blocks[2].Position = new Point(position, blocks[2].Position.Y);
-                blocks[3].Position = new Point(position - 1, blocks[3].Position.Y);
-            }
-            else
-            {
-                for (int i = blocks[2].Position.X; i < 20; i++)
-                {
-                    if (!(board[i, blocks[0].Position.Y].Equals(Color.FromName("Black"))) || !(board[i - 2, blocks[3].Position.Y].Equals(Color.FromName("Black"))))
-                    {
-                        position = i - 1;
-                        break;
-                    }
-                }
-                blocks[0].Position = new Point(position, blocks[0].Position.Y);
-                blocks[1].Position = new Point(position - 1, blocks[1].Position.Y);
-                blocks[2].Position = new Point(position - 2, blocks[2].Position.Y);
-                blocks[3].Position = new Point(position - 2, blocks[3].Position.Y);
-            }
+
+            // Means reached the pile.
+            OnJoinPile();
         }
 
         public override void Rotate()
         {
-            currentRotation++;
             if(currentRotation == 4)
             {
                 currentRotation = 0;
@@ -271,7 +234,7 @@ namespace Tetris
                 blocks[2].Rotate(rotationOffset[currentRotation, 2]);
                 blocks[3].Rotate(rotationOffset[currentRotation, 3]);
             }
-
+            currentRotation++;
         }
 
         public override void Reset()

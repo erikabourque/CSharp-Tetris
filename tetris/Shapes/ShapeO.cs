@@ -68,22 +68,31 @@ namespace Tetris
 
         public override void Drop()
         {
-            Point firstBlock = blocks[2].Position;
-            Point secondBlock = blocks[3].Position;
-            int position = 19;
-            for(int i = firstBlock.X; i < 20; i ++)
+            bool canDrop = true;
+
+            while (canDrop)
             {
-                if((board[firstBlock.X, firstBlock.Y].Equals(Color.FromName("Black")) || board[secondBlock.X, secondBlock.Y].Equals(Color.FromName("Black"))))
+                // Checking if its possible, returns if it can't
+                for (int i = 0; i < blocks.Length; i++)
                 {
-                    position = i - 1;
-                    break;
+                    if (!blocks[i].TryMoveDown())
+                    {
+                        canDrop = false;
+                    }
+                }
+
+                if (canDrop)
+                {
+                    // Reaching here means all trys successful
+                    for (int i = 0; i < blocks.Length; i++)
+                    {
+                        blocks[i].MoveDown();
+                    }
                 }
             }
 
-            blocks[0].Position = new Point(position - 1, blocks[0].Position.Y);
-            blocks[1].Position = new Point(position - 1, blocks[1].Position.Y);
-            blocks[2].Position = new Point(position, blocks[2].Position.Y);
-            blocks[3].Position = new Point(position, blocks[3].Position.Y);
+            // Means reached the pile.
+            OnJoinPile();
         }
 
         public override void Reset()
