@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tetris
 {
+    // Author: Georgi Veselinov Kichev
+    // Date: 29/02/2016
+    // Version: 2
+
     public delegate void JoinPileHandler(IShape shape);
 
     public interface IShape

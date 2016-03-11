@@ -20,6 +20,11 @@ namespace Tetris
         // Constructor
         public ShapeProxy(IBoard board)
         {
+            if (board == null)
+            {
+                throw new NullReferenceException("ShapeProxy constructor error. Board is null: " + board);
+            }
+
             random = new Random();
             this.board = board;
 

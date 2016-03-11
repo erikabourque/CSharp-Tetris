@@ -7,128 +7,130 @@ using System.Drawing;
 
 namespace Tetris
 {
+    // Author: Georgi Veselinov Kichev, Erika Bourque
+    // Date: 10/03/2016
+    // Version: 2.0
+
     public class ShapeZ: Shape
     {
-        int length = 4;
         IBoard board;
 
+        // Constructor, requires IBoard object.
         public ShapeZ(IBoard board)
         {
-            blocks = new Block[4];
-            rotationOffset = new Point[2, 4];
-            currentRotation = 0;
-            CreateRotationArray();
             this.board = board;
             blocks = new Block[4];
             blocks[0] = new Block(Color.FromName("Cyan"), new Point(0, 4), board);
             blocks[1] = new Block(Color.FromName("Cyan"), new Point(0, 5), board);
             blocks[2] = new Block(Color.FromName("Cyan"), new Point(1, 5), board);
             blocks[3] = new Block(Color.FromName("Cyan"), new Point(1, 6), board);
+
+            CreateRotationArray();
         }
 
+        // Returns the length of the blocks array. Getter only.
         public override int Length
         {
-            get { return length; }
+            get { return blocks.Length; }
         }
 
+        // Indexer. Getter only.
         public override Block this[int index]
         {
             get { return blocks[index]; }
         }
 
+        // Fills the rotationOffset array with appropriate offsets.
         private void CreateRotationArray()
         {
-            //first rotation
-            rotationOffset[0, 0] = new Point(1,1);
-            rotationOffset[0, 1] = new Point(0,0);
-            rotationOffset[0, 2] = new Point(-1,1);
-            rotationOffset[0, 3] = new Point(-2,0);
-            //second rotation
-            rotationOffset[1, 0] = new Point(-1,-1);
+            rotationOffset = new Point[2, 4];
+            // First rotation
+            rotationOffset[1, 0] = new Point(-1,1);
             rotationOffset[1, 1] = new Point(0,0);
-            rotationOffset[1, 2] = new Point(1,-1);
-            rotationOffset[1, 3] = new Point(2,0);
+            rotationOffset[1, 2] = new Point(-1,-1);
+            rotationOffset[1, 3] = new Point(0, -2);
+            // Second rotation, back to original position
+            rotationOffset[0, 0] = new Point(1,-1);
+            rotationOffset[0, 1] = new Point(0, 0);
+            rotationOffset[0, 2] = new Point(1, 1);
+            rotationOffset[0, 3] = new Point(0, 2);
         }
 
+        // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
-            if (currentRotation == 0)
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[0].TryMoveLeft() && blocks[2].TryMoveLeft())
+                if (!blocks[i].TryMoveLeft())
                 {
-                    blocks[0].MoveLeft();
-                    blocks[1].MoveLeft();
-                    blocks[2].MoveLeft();
-                    blocks[3].MoveLeft();
+                    return;
                 }
             }
-            else
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[0].TryMoveLeft() && blocks[1].TryMoveLeft() && blocks[3].TryMoveLeft())
-                {
-                    blocks[0].MoveLeft();
-                    blocks[1].MoveLeft();
-                    blocks[2].MoveLeft();
-                    blocks[3].MoveLeft();
-                }
+                blocks[i].MoveLeft();
             }
         }
 
+        // Moves the shape to the right if possible.
         public override void MoveRight()
         {
-            if (currentRotation == 0)
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[1].TryMoveRight() && blocks[3].TryMoveRight())
+                if (!blocks[i].TryMoveRight())
                 {
-                    blocks[0].MoveRight();
-                    blocks[1].MoveRight();
-                    blocks[2].MoveRight();
-                    blocks[3].MoveRight();
+                    return;
                 }
             }
-            else
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[1].TryMoveRight() && blocks[2].TryMoveRight() && blocks[3].TryMoveRight())
-                {
-                    blocks[0].MoveRight();
-                    blocks[1].MoveRight();
-                    blocks[2].MoveRight();
-                    blocks[3].MoveRight();
-                }
+                blocks[i].MoveRight();
             }
         }
 
+        // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
-            if (currentRotation == 0)
+            bool canDrop = true;
+            // Checking if its possible, prevents if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[0].TryMoveDown() && blocks[2].TryMoveDown() && blocks[3].TryMoveDown())
+                if (!blocks[i].TryMoveDown())
                 {
-                    blocks[0].MoveDown();
-                    blocks[1].MoveDown();
-                    blocks[2].MoveDown();
-                    blocks[3].MoveDown();
+                    canDrop = false;
+                }
+            }
+
+            if (canDrop)
+            {
+                // Reaching here means all trys successful
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].MoveDown();
                 }
             }
             else
             {
-                if (blocks[0].TryMoveDown() && blocks[2].TryMoveDown())
-                {
-                    blocks[0].MoveDown();
-                    blocks[1].MoveDown();
-                    blocks[2].MoveDown();
-                    blocks[3].MoveDown();
-                }
+                // Means reached the pile
+                OnJoinPile();
             }
         }
 
+        // Makes the shape move down as many times as possible.
+        // Fires addtopile event.
         public override void Drop()
         {
             bool canDrop = true;
 
             while (canDrop)
             {
-                // Checking if its possible, returns if it can't
+                // Checking if its possible, prevents if it can't
                 for (int i = 0; i < blocks.Length; i++)
                 {
                     if (!blocks[i].TryMoveDown())
@@ -151,21 +153,40 @@ namespace Tetris
             OnJoinPile();
         }
 
+        // Rotates the shape according to its offsets if possible.
         public override void Rotate()
         {
-            currentRotation++;
-            if (currentRotation == 2)
+            bool canRotate = true;
+            int newRotation = currentRotation + 1;
+
+            if (newRotation == 2)
             {
-                currentRotation = 0;
+                newRotation = 0;
             }
-            if (blocks[0].TryRotate(rotationOffset[currentRotation, 0]) && blocks[2].TryRotate(rotationOffset[currentRotation, 2]) && blocks[3].TryRotate(rotationOffset[currentRotation, 3]))
+
+            // Check if all pieces can rotate
+            for (int i = 0; i < blocks.Length; i++)
             {
-                blocks[0].Rotate(rotationOffset[currentRotation, 0]);
-                blocks[2].Rotate(rotationOffset[currentRotation, 2]);
-                blocks[3].Rotate(rotationOffset[currentRotation, 3]);
+                if (!blocks[i].TryRotate(rotationOffset[newRotation, i]))
+                {
+                    canRotate = false;
+                }
+            }
+
+            if (canRotate)
+            {
+                // Rotate each piece
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].Rotate(rotationOffset[newRotation, i]);
+                }
+
+                // Make new rotation the current rotation
+                currentRotation = newRotation;
             }
         }
 
+        // Returns the shape to its starting position and rotation
         public override void Reset()
         {
             blocks[0].Position = new Point(0, 4);

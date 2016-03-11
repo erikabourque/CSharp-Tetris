@@ -14,7 +14,7 @@ namespace Tetris
     {
         // Instance Variables
         private int linesCleared = 0;
-        private int level = 0;
+        private int level = 1;
         private int score = 0;
 
         // Constructors

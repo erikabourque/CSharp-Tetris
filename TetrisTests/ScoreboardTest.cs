@@ -5,7 +5,7 @@ using Tetris;
 namespace TetrisTests
 {
     // TestBoard for Scoreboard
-    public class TestBoard : IBoard
+    public class EventThrowingTestBoard : IBoard
     {
         public System.Drawing.Color this[int i, int j]
         {
@@ -48,7 +48,7 @@ namespace TetrisTests
         {
             // Arrange
             Scoreboard test;
-            IBoard board = new TestBoard();
+            IBoard board = new EventThrowingTestBoard();
 
             // Act
             test = new Scoreboard(board);
@@ -74,7 +74,7 @@ namespace TetrisTests
         {
             // Arrange
             int numLines = 2;
-            TestBoard board = new TestBoard();
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
             Scoreboard test = new Scoreboard(board);
 
             // Act
@@ -90,7 +90,7 @@ namespace TetrisTests
         {
             // Arrange
             int numLines = 4;
-            TestBoard board = new TestBoard();
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
             Scoreboard test = new Scoreboard(board);
 
             // Act
@@ -106,7 +106,7 @@ namespace TetrisTests
         {
             // Arrange
             int numLines = 2;
-            TestBoard board = new TestBoard();
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
             Scoreboard test = new Scoreboard(board);
 
             // Act
@@ -122,7 +122,7 @@ namespace TetrisTests
         {
             // Arrange
             int numLines = 2;
-            TestBoard board = new TestBoard();
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
             Scoreboard test = new Scoreboard(board);
 
             // Act
@@ -138,7 +138,7 @@ namespace TetrisTests
         {
             // Arrange
             int numLines = 4;
-            TestBoard board = new TestBoard();
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
             Scoreboard test = new Scoreboard(board);
 
             // Act
@@ -148,7 +148,33 @@ namespace TetrisTests
             int level = test.Level;
 
             // Assert
-            //Assert.AreEqual()
+            Assert.AreEqual(2, level);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void incrementLinesCleared_LowerInvalidNum()
+        {
+            // Arrange
+            int numLines = 0;
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void incrementLinesCleared_HigherInvalidNum()
+        {
+            // Arrange
+            int numLines = 5;
+            EventThrowingTestBoard board = new EventThrowingTestBoard();
+            Scoreboard test = new Scoreboard(board);
+
+            // Act
+            board.OnLinesCleared(numLines);
         }
     }
 }

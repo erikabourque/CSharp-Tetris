@@ -7,7 +7,11 @@ using System.Drawing;
 
 namespace Tetris
 {
-   public abstract class Shape : IShape
+    // Author: Georgi Veselinov Kichev
+    // Date: 29/02/2016
+    // Version: 2
+
+    public abstract class Shape : IShape
     {
         private IBoard board;
         protected Block[] blocks;
