@@ -95,7 +95,7 @@ namespace Tetris
             current.JoinPile += OnJoinPile;
         }
 
-        // Following methods assume validation in current
+        // Following methods assume validation in current, all call same method in current.
         public void MoveLeft()
         {
             current.MoveLeft();
