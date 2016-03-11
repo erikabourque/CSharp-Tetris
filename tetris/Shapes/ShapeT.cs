@@ -131,7 +131,7 @@ namespace Tetris
         public override void MoveDown()
         {
             bool canDrop = true;
-            // Checking if its possible, returns if it can't
+            // Checking if its possible, prevents if it can't
             for (int i = 0; i < blocks.Length; i++)
             {
                 if (!blocks[i].TryMoveDown())
