@@ -169,6 +169,11 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
             else if (currentRotation == 1)
             {
@@ -178,6 +183,11 @@ namespace Tetris
                     blocks[1].MoveDown();
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
+                }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
                 }
             }
             else if (currentRotation == 2)
@@ -189,6 +199,11 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
             else
             {
@@ -198,6 +213,11 @@ namespace Tetris
                     blocks[1].MoveDown();
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
+                }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
                 }
             }
         }

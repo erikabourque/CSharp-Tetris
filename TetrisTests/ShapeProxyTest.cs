@@ -6,6 +6,9 @@ using System.Drawing;
 namespace TetrisTests
 {
     // Using same ColorableTestBoard as BlockTest
+    // Using event board to test event firing.
+
+
 
     [TestClass]
     public class ShapeProxyTest
