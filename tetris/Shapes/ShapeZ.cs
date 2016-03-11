@@ -13,7 +13,6 @@ namespace Tetris
 
     public class ShapeZ: Shape
     {
-        int length = 4;
         IBoard board;
 
         // Constructor, requires IBoard object.

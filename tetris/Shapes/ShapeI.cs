@@ -7,12 +7,17 @@ using System.Drawing;
 
 namespace Tetris
 {
+    // Author: Georgi Veselinov Kichev
+    // Date: 10/03/2016
+    // Version: 2.0
+
     public class ShapeI : Shape
     {
         int length = 4;
         IBoard board;
 
-        public ShapeI(IBoard board )
+        // Constructor, requires IBoard object.
+        public ShapeI(IBoard board)
         {
             blocks = new Block[4];
             rotationOffset = new Point[2, 4];
@@ -25,16 +30,19 @@ namespace Tetris
             blocks[3] = new Block(Color.FromName("Yellow"), new Point(0, 6), board);
         }
 
+        // Returns the length of the blocks array. Getter only.
         public override int Length
         {
             get { return length; }
         }
 
+        // Indexer. Getter only.
         public override Block this[int index]
         {
             get { return blocks[index]; }
         }
 
+        // Fills the rotationOffset array with appropriate offsets.
         private void CreateRotationArray()
         {
             //first rotation
@@ -49,6 +57,7 @@ namespace Tetris
             rotationOffset[1, 3] = new Point(1,1);
         }
 
+        // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
             if (currentRotation == 1)
@@ -76,6 +85,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape to the right if possible.
         public override void MoveRight()
         {
             if (currentRotation == 1)
@@ -103,6 +113,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
             if (currentRotation == 1)
@@ -130,7 +141,8 @@ namespace Tetris
             }
         }
 
-
+        // Makes the shape move down as many times as possible.
+        // Fires addtopile event.
         public override void Drop()
         {
             bool canDrop = true;
@@ -160,6 +172,7 @@ namespace Tetris
             OnJoinPile();
         }
 
+        // Rotates the shape according to its offsets if possible.
         public override void Rotate()
         {
             if (currentRotation == 0)
@@ -184,6 +197,7 @@ namespace Tetris
             }
         }
 
+        // Returns the shape to its starting position and rotation
         public override void Reset()
         {
             blocks[0].Position = new Point(0, 3);

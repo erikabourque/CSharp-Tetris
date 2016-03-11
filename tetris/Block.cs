@@ -7,6 +7,10 @@ using System.Drawing;
 
 namespace Tetris
 {
+    // Author: Georgi Veselinov Kichev, Erika Bourque
+    // Date: 10/03/2016
+    // Version: 3.0
+
     public class Block
     {
         private IBoard board;
