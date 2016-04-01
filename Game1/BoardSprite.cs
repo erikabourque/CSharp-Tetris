@@ -25,7 +25,8 @@ namespace Game1
 
         public BoardSprite(Game game, IBoard board): base(game)
         {
-            // TODO: Construct any child components here
+            this.game = game;
+            this.board = board;
         }
 
         public override void Initialize()

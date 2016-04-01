@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Tetris;
 
 namespace Game1
 {
@@ -9,8 +10,11 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private BoardSprite boardSprite;
+        private ShapeSprite shapeSprite;
+        private ScoreSprite scoreSprite;
 
         public Game1()
         {
@@ -26,9 +30,26 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Board board = new Board();
+            Scoreboard score = new Scoreboard(board);
+
+            board.GameOver += gameOver;
+
+            boardSprite = new BoardSprite(this, board);
+            Components.Add(boardSprite);
+
+            shapeSprite = new ShapeSprite(this, board.Shape, score);
+            Components.Add(shapeSprite);
+
+            scoreSprite = new ScoreSprite(this, board, score);
+            Components.Add(scoreSprite);
 
             base.Initialize();
+        }
+
+        private void Board_GameOver()
+        {
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -78,6 +99,13 @@ namespace Game1
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        private void gameOver()
+        {
+            Components.Remove(shapeSprite);
+
+            // add code here to tell scoreSprite game is over.
         }
     }
 }
