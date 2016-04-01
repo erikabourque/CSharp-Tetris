@@ -57,6 +57,7 @@
   <ItemGroup>
     <Content Include="Content\EmptyBlock.png" />
     <Content Include="Content\FilledBlock.png" />
+    <Content Include="Content\OriginalTetrisTheme.mp3" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

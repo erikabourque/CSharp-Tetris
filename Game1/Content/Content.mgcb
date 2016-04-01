@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:FilledBlock.png
 
+#begin OriginalTetrisTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:OriginalTetrisTheme.mp3
+

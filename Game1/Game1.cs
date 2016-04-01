@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Tetris;
 
 namespace Game1
@@ -15,6 +16,8 @@ namespace Game1
         private BoardSprite boardSprite;
         private ShapeSprite shapeSprite;
         private ScoreSprite scoreSprite;
+
+        private Song backgroundMusic;
 
         public Game1()
         {
@@ -56,7 +59,9 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            backgroundMusic = Content.Load<Song>("OriginalTetrisTheme");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(backgroundMusic);
             // TODO: use this.Content to load your game content here
         }
 
@@ -90,9 +95,13 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            Texture2D borderPixel = new Texture2D(GraphicsDevice, 1, 1);
+            borderPixel.SetData(new[] { Color.White } );
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(borderPixel, new Rectangle(198, 48, 204, 404), Color.LightGray);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
