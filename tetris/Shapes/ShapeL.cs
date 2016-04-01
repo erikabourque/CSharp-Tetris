@@ -7,11 +7,15 @@ using System.Drawing;
 
 namespace Tetris
 {
-    public class ShapeL: Shape
+    // Author: Georgi Veselinov Kichev
+    // Date: 10/03/2016
+    // Version: 2.0
+    public class ShapeL : Shape
     {
         int length = 4;
         IBoard board;
 
+        // Constructor, requires IBoard object.
         public ShapeL(IBoard board)
         {
             blocks = new Block[4];
@@ -26,16 +30,19 @@ namespace Tetris
             blocks[3] = new Block(Color.FromName("Red"), new Point(1, 4), board);
         }
 
+        // Returns the length of the blocks array. Getter only.
         public override int Length
         {
             get { return length; }
         }
 
+        // Indexer. Getter only.
         public override Block this[int index]
         {
             get { return blocks[index]; }
         }
 
+        // Fills the rotationOffset array with appropriate offsets.
         private void CreateRotationArray()
         {
             //first rotation
@@ -51,15 +58,16 @@ namespace Tetris
             //third rotation
             rotationOffset[2, 0] = new Point(-1, -1);
             rotationOffset[2, 1] = new Point(0, 0);
-            rotationOffset[2, 2] = new Point(1,1);
+            rotationOffset[2, 2] = new Point(1, 1);
             rotationOffset[2, 3] = new Point(0, -2);
             //fourth rotation
-            rotationOffset[3, 0] = new Point(-1, -1);
+            rotationOffset[3, 0] = new Point(1, -1);
             rotationOffset[3, 1] = new Point(0, 0);
-            rotationOffset[3, 2] = new Point(1, 1);
-            rotationOffset[3, 3] = new Point(0, -2);
+            rotationOffset[3, 2] = new Point(-1, 1);
+            rotationOffset[3, 3] = new Point(2, 0);
         }
 
+        // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
             if (currentRotation == 0)
@@ -72,7 +80,7 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[0].TryMoveLeft() && blocks[1].TryMoveLeft() && blocks[2].TryMoveLeft())
                 {
@@ -82,7 +90,7 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            else if(currentRotation == 2)
+            else if (currentRotation == 2)
             {
                 if (blocks[2].TryMoveLeft() && blocks[3].TryMoveLeft())
                 {
@@ -102,9 +110,10 @@ namespace Tetris
                     blocks[3].MoveLeft();
                 }
             }
-            
+
         }
 
+        // Moves the shape to the right if possible.
         public override void MoveRight()
         {
             if (currentRotation == 0)
@@ -117,7 +126,7 @@ namespace Tetris
                     blocks[3].MoveRight();
                 }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[1].TryMoveRight() && blocks[2].TryMoveRight() && blocks[3].TryMoveRight())
                 {
@@ -149,6 +158,7 @@ namespace Tetris
             }
         }
 
+        // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
             if (currentRotation == 0)
@@ -160,8 +170,13 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
-            else if(currentRotation == 1)
+            else if (currentRotation == 1)
             {
                 if (blocks[0].TryMoveDown() && blocks[3].TryMoveDown())
                 {
@@ -169,6 +184,11 @@ namespace Tetris
                     blocks[1].MoveDown();
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
+                }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
                 }
             }
             else if (currentRotation == 2)
@@ -180,6 +200,11 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
             else
             {
@@ -190,9 +215,16 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
         }
 
+        // Makes the shape move down as many times as possible.
+        // Fires addtopile event.
         public override void Drop()
         {
             bool canDrop = true;
@@ -222,9 +254,10 @@ namespace Tetris
             OnJoinPile();
         }
 
+        // Rotates the shape according to its offsets if possible.
         public override void Rotate()
         {
-            if(currentRotation == 4)
+            if (currentRotation == 4)
             {
                 currentRotation = 0;
             }
@@ -238,6 +271,7 @@ namespace Tetris
             currentRotation++;
         }
 
+        // Returns the shape to its starting position and rotation.
         public override void Reset()
         {
             blocks[0].Position = new Point(0, 4);

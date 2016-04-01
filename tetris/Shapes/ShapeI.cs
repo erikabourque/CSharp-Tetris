@@ -10,7 +10,6 @@ namespace Tetris
     // Author: Georgi Veselinov Kichev
     // Date: 10/03/2016
     // Version: 2.0
-
     public class ShapeI : Shape
     {
         int length = 4;
@@ -125,6 +124,11 @@ namespace Tetris
                     blocks[2].MoveDown();
                     blocks[3].MoveDown();
                 }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
+                }
             }
             else
             {
@@ -137,6 +141,16 @@ namespace Tetris
                         blocks[2].MoveDown();
                         blocks[3].MoveDown();
                     }
+                    else
+                    {
+                        // Means reached the pile
+                        OnJoinPile();
+                    }
+                }
+                else
+                {
+                    // Means reached the pile
+                    OnJoinPile();
                 }
             }
         }
@@ -197,7 +211,7 @@ namespace Tetris
             }
         }
 
-        // Returns the shape to its starting position and rotation
+        // Returns the shape to its starting position and rotation.
         public override void Reset()
         {
             blocks[0].Position = new Point(0, 3);

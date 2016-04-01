@@ -8,8 +8,8 @@ using System.Drawing;
 namespace Tetris
 {
     // Author: Erika Bourque
-    // Date: 09/03/2016
-    // Version: 7.0
+    // Date: 10/03/2016
+    // Version: 7.5
 
     public class Board : IBoard
     {
@@ -99,7 +99,7 @@ namespace Tetris
             for (int i = 0; i < shape.Length; i++)
             {
                 coords = shape[i].Position;
-                board[coords.Y, coords.X] = shape[i].Color;
+                board[coords.X, coords.Y] = shape[i].Color;
             }
 
             // Check for rows cleared
