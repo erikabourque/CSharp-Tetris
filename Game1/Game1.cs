@@ -20,7 +20,7 @@ namespace Game1
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.Window.Title = "Hello world";
+            this.Window.Title = "Tetris";
         }
 
         /// <summary>
@@ -38,7 +38,6 @@ namespace Game1
 
             boardSprite = new BoardSprite(this, board);
             Components.Add(boardSprite);
-
             /**
             shapeSprite = new ShapeSprite(this, board.Shape, score);
             Components.Add(shapeSprite);
@@ -47,11 +46,6 @@ namespace Game1
             Components.Add(scoreSprite);
             */
             base.Initialize();
-        }
-
-        private void Board_GameOver()
-        {
-            throw new System.NotImplementedException();
         }
 
         /// <summary>
