@@ -15,6 +15,9 @@ namespace Game1
 {
     class BoardSprite: DrawableGameComponent
     {
+        private IBoard board;
+
+
         public BoardSprite(Game1 game): base(game)
         {
             // TODO: Construct any child components here
