@@ -43,3 +43,9 @@
 /processorParam:Quality=Best
 /build:OriginalTetrisTheme.mp3
 
+#begin scoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:scoreFont.spritefont
+

@@ -13,7 +13,7 @@ using Tetris;
 
 namespace Game1
 {
-    class BoardSprite: DrawableGameComponent
+    public class BoardSprite: DrawableGameComponent
     {
         private IBoard board;
         private Game game;

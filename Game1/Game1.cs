@@ -1,4 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -40,14 +47,13 @@ namespace Game1
             board.GameOver += gameOver;
 
             boardSprite = new BoardSprite(this, board);
-            Components.Add(boardSprite);
-            /**
             shapeSprite = new ShapeSprite(this, board.Shape, score);
+            scoreSprite = new ScoreSprite(this, score);
+                                   
+            Components.Add(boardSprite);
             Components.Add(shapeSprite);
-
-            scoreSprite = new ScoreSprite(this, board, score);
             Components.Add(scoreSprite);
-            */
+
             base.Initialize();
         }
 
@@ -59,9 +65,11 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             backgroundMusic = Content.Load<Song>("OriginalTetrisTheme");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(backgroundMusic);
+            
             // TODO: use this.Content to load your game content here
         }
 
