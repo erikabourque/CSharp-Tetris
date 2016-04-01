@@ -20,6 +20,7 @@ namespace Game1
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.Window.Title = "Hello world";
         }
 
         /// <summary>
@@ -38,12 +39,13 @@ namespace Game1
             boardSprite = new BoardSprite(this, board);
             Components.Add(boardSprite);
 
+            /**
             shapeSprite = new ShapeSprite(this, board.Shape, score);
             Components.Add(shapeSprite);
 
             scoreSprite = new ScoreSprite(this, board, score);
             Components.Add(scoreSprite);
-
+            */
             base.Initialize();
         }
 
