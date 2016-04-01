@@ -46,11 +46,12 @@ namespace Game1
 
             int width = emptyBlock.Width;
             int height = emptyBlock.Height;
-            // Gonna use 50 px as buffer on the left side for score for now
+            // Buffer so that the grid isn't stuck on one side
             int xBuffer = 200;
             int yBuffer = 50;
 
             // Filling vector array for block image locations
+            // i represents y on a grid and j represents x on a grid 
             for (int i = 0; i < vectors.GetLength(0); i++)
             {
                 for (int j = 0; j < vectors.GetLength(1); j++)
