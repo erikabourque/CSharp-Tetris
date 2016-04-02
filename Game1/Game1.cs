@@ -1,6 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Tetris;
 
 namespace Game1
 {
@@ -9,13 +18,19 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private BoardSprite boardSprite;
+        private ShapeSprite shapeSprite;
+        private ScoreSprite scoreSprite;
+
+        private Song backgroundMusic;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.Window.Title = "Tetris";
         }
 
         /// <summary>
@@ -26,7 +41,18 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Board board = new Board();
+            Scoreboard score = new Scoreboard(board);
+
+            board.GameOver += gameOver;
+
+            boardSprite = new BoardSprite(this, board);
+            shapeSprite = new ShapeSprite(this, board.Shape, score);
+            scoreSprite = new ScoreSprite(this, score);
+                                   
+            Components.Add(boardSprite);
+            Components.Add(shapeSprite);
+            Components.Add(scoreSprite);
 
             base.Initialize();
         }
@@ -40,6 +66,10 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            backgroundMusic = Content.Load<Song>("OriginalTetrisTheme");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(backgroundMusic);
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,11 +103,22 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            Texture2D borderPixel = new Texture2D(GraphicsDevice, 1, 1);
+            borderPixel.SetData(new[] { Color.White } );
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(borderPixel, new Rectangle(198, 48, 204, 404), Color.LightGray);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void gameOver()
+        {
+            Components.Remove(shapeSprite);
+
+            // add code here to tell scoreSprite game is over.
         }
     }
 }

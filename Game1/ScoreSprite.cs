@@ -13,11 +13,19 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Game1
 {
-    class ScoreSprite : DrawableGameComponent
+    public class ScoreSprite : DrawableGameComponent
     {
-        public ScoreSprite(Game1 game): base(game)
+        private Scoreboard score;
+
+        private Game game;
+        private SpriteBatch spriteBatch;
+
+        private SpriteFont font;
+
+        public ScoreSprite(Game game, Scoreboard score) : base(game)
         {
-            // TODO: Construct any child components here
+            this.game = game;
+            this.score = score;
         }
 
         public override void Initialize()
@@ -27,6 +35,8 @@ namespace Game1
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = game.Content.Load<SpriteFont>("scoreFont");
             base.LoadContent();
         }
 
@@ -37,6 +47,16 @@ namespace Game1
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, "Player Score: " + score.Score, new Vector2(0, 20), Color.White);
+            spriteBatch.DrawString(font, "Current Level: " + score.Level, new Vector2(0, 30), Color.White);
+            spriteBatch.DrawString(font, "Total Lines cleared: " + score.Lines, new Vector2(0, 40), Color.White);
+            spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Minutes
+                + ":" + gameTime.TotalGameTime.Seconds
+                + ":" + gameTime.TotalGameTime.Milliseconds,
+                new Vector2(0, 50), Color.White);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
