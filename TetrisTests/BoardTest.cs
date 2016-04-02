@@ -1,27 +1,39 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tetris;
+using System.Drawing;
 
 namespace TetrisTests
 {
-    public class TestEventObserver
+    public class TestEventBoardObserver
     {
-        private Board board;
+        private IBoard board;
         public bool gameIsOver = false;
+        public bool linesCleared = false;
 
         public bool GameOver
         {
             get { return gameIsOver; }
         }
 
-        public TestEventObserver(Board board)
+        public bool LinesCleared
+        {
+            get { return linesCleared; }
+        }
+
+        public TestEventBoardObserver(IBoard board)
         {
             this.board = board;
             board.GameOver += onGameOver;
+            board.LinesCleared += onLinesCleared;
         }
         public void onGameOver()
         {
             gameIsOver = true;
+        }
+        public void onLinesCleared(int num)
+        {
+            linesCleared = true;
         }
     }
 
@@ -96,13 +108,34 @@ namespace TetrisTests
             length = test.GetLength(2);
         }
 
-        /*
+        [TestMethod]
+        public void AddsToPile_Test()
+        {
+            // Arrange
+            IBoard test = new Board();
+            bool isEmpty = true;
+
+            // Act
+            test.Shape.Drop();
+            
+            for (int i = 0; i < test.GetLength(1); i++)
+            {
+                if (test[19, i] != Color.Black)
+                {
+                    isEmpty = false;
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(false, isEmpty);
+        }
+
         [TestMethod]
         public void GameOverEvent_Valid()
         {
             // Arrange
             Board test = new Board();
-            TestEventObserver obs = new TestEventObserver(test);
+            TestEventBoardObserver obs = new TestEventBoardObserver(test);
 
             // Act
             for (int i = 0; i < 20; i++)
@@ -112,6 +145,6 @@ namespace TetrisTests
 
             // Assert
             Assert.AreEqual(true, obs.gameIsOver);
-        } */
+        }
     }
 }
