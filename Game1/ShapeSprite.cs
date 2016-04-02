@@ -62,7 +62,7 @@ namespace Game1
             spriteBatch.Begin();
             for (int i = 0; i < shape.Length; i++)
             {
-                spriteBatch.Draw(filledBlock, new Vector2(200 + shape[i].Position.Y * 20, 50 + shape[i].Position.X * 20),
+                spriteBatch.Draw(filledBlock, new Vector2(200 + shape[i].Position.Y * 20, 20 + shape[i].Position.X * 20),
                     new Color(shape[i].Color.R, shape[i].Color.G, shape[i].Color.B, shape[i].Color.A));
             }
             spriteBatch.End();

@@ -20,6 +20,7 @@ namespace Game1
         private Game game;
         private SpriteBatch spriteBatch;
 
+        private bool gameOver = false;
         private SpriteFont font;
 
         public ScoreSprite(Game game, Scoreboard score) : base(game)
@@ -48,16 +49,29 @@ namespace Game1
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Player Score: " + score.Score, new Vector2(0, 20), Color.White);
-            spriteBatch.DrawString(font, "Current Level: " + score.Level, new Vector2(0, 30), Color.White);
-            spriteBatch.DrawString(font, "Total Lines cleared: " + score.Lines, new Vector2(0, 40), Color.White);
-            spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Minutes
-                + ":" + gameTime.TotalGameTime.Seconds
-                + ":" + gameTime.TotalGameTime.Milliseconds,
-                new Vector2(0, 50), Color.White);
+            spriteBatch.DrawString(font, "Player Score: " + score.Score, new Vector2(2, 20), Color.White);
+            spriteBatch.DrawString(font, "Current Level: " + score.Level, new Vector2(2, 50), Color.White);
+            spriteBatch.DrawString(font, "Total Lines cleared: " + score.Lines, new Vector2(2, 80), Color.White);
+
+            if (gameOver)
+            {
+                spriteBatch.DrawString(font, "Game Over, if you wish you \ncan restart the program.", new Vector2(2, 110), Color.White);
+            }
+            else
+            {
+                
+                spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Minutes
+                    + ":" + gameTime.TotalGameTime.Seconds,
+                    new Vector2(0, 110), Color.White);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void GameOver()
+        {
+            gameOver = true;
         }
     }
 }

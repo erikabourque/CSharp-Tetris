@@ -42,36 +42,61 @@ namespace Tetris
         // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
-            if(blocks[0].TryMoveLeft() && blocks[2].TryMoveLeft())
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                blocks[0].MoveLeft();
-                blocks[1].MoveLeft();
-                blocks[2].MoveLeft();
-                blocks[3].MoveLeft();
+                if (!blocks[i].TryMoveLeft())
+                {
+                    return;
+                }
+            }
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                blocks[i].MoveLeft();
             }
         }
 
         // Moves the shape to the right if possible.
         public override void MoveRight()
         {
-            if (blocks[1].TryMoveRight() && blocks[3].TryMoveRight())
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                blocks[0].MoveRight();
-                blocks[1].MoveRight();
-                blocks[2].MoveRight();
-                blocks[3].MoveRight();
+                if (!blocks[i].TryMoveRight())
+                {
+                    return;
+                }
+            }
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                blocks[i].MoveRight();
             }
         }
 
         // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
-            if (blocks[2].TryMoveDown() && blocks[3].TryMoveDown())
+            bool canDrop = true;
+            // Checking if its possible, prevents if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                blocks[0].MoveDown();
-                blocks[1].MoveDown();
-                blocks[2].MoveDown();
-                blocks[3].MoveDown();
+                if (!blocks[i].TryMoveDown())
+                {
+                    canDrop = false;
+                }
+            }
+
+            if (canDrop)
+            {
+                // Reaching here means all trys successful
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].MoveDown();
+                }
             }
             else
             {

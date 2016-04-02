@@ -48,7 +48,7 @@ namespace Game1
             int height = emptyBlock.Height;
             // Buffer so that the grid isn't stuck on one side
             int xBuffer = 200;
-            int yBuffer = 50;
+            int yBuffer = 20;
 
             // Filling vector array for block image locations
             // i represents y on a grid and j represents x on a grid 

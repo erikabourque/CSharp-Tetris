@@ -46,15 +46,15 @@ namespace Tetris
         private void CreateRotationArray()
         {
             //first rotation
-            rotationOffset[0, 0] = new Point(0,0);
-            rotationOffset[0, 1] = new Point(-1,-1);
-            rotationOffset[0, 2] = new Point(0,2);
-            rotationOffset[0, 3] = new Point(-1,1);
-            //second rotation
             rotationOffset[1, 0] = new Point(0,0);
-            rotationOffset[1, 1] = new Point(1,1);
-            rotationOffset[1, 2] = new Point(0,-2);
-            rotationOffset[1, 3] = new Point(1,-1);
+            rotationOffset[1, 1] = new Point(-1,-1);
+            rotationOffset[1, 2] = new Point(0,2);
+            rotationOffset[1, 3] = new Point(-1,1);
+            //second rotation
+            rotationOffset[0, 0] = new Point(0,0);
+            rotationOffset[0, 1] = new Point(1,1);
+            rotationOffset[0, 2] = new Point(0,-2);
+            rotationOffset[0, 3] = new Point(1,-1);
         }
 
         // Moves the shape to the left if possible.
@@ -157,17 +157,34 @@ namespace Tetris
         // Rotates the shape according to its offsets if possible.
         public override void Rotate()
         {
-            if (currentRotation == 2)
+            bool canRotate = true;
+            int newRotation = currentRotation + 1;
+
+            if (newRotation == 2)
             {
-                currentRotation = 0;
+                newRotation = 0;
             }
-            if (blocks[1].TryRotate(rotationOffset[currentRotation, 1]) && blocks[2].TryRotate(rotationOffset[currentRotation, 2]) && blocks[3].TryRotate(rotationOffset[currentRotation, 3]))
+
+            // Check if all pieces can rotate
+            for (int i = 0; i < blocks.Length; i++)
             {
-                blocks[1].Rotate(rotationOffset[currentRotation, 1]);
-                blocks[2].Rotate(rotationOffset[currentRotation, 2]);
-                blocks[3].Rotate(rotationOffset[currentRotation, 3]);
+                if (!blocks[i].TryRotate(rotationOffset[newRotation, i]))
+                {
+                    canRotate = false;
+                }
             }
-            currentRotation++;
+
+            if (canRotate)
+            {
+                // Rotate each piece
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].Rotate(rotationOffset[newRotation, i]);
+                }
+
+                // Make new rotation the current rotation
+                currentRotation = newRotation;
+            }
         }
 
         // Returns the shape to its starting position and rotation.
