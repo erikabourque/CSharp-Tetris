@@ -55,7 +55,7 @@ namespace Game1
 
             if (gameOver)
             {
-                spriteBatch.DrawString(font, "Game Over, if you wish you \ncan start a new game.", new Vector2(2, 110), Color.White);
+                spriteBatch.DrawString(font, "Game Over, if you wish you \ncan restart the program.", new Vector2(2, 110), Color.White);
             }
             else
             {
