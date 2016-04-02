@@ -31,6 +31,10 @@ namespace Game1
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Window.Title = "Tetris";
+
+            graphics.PreferredBackBufferWidth = 450;
+            graphics.PreferredBackBufferHeight = 450;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -69,8 +73,6 @@ namespace Game1
             backgroundMusic = Content.Load<Song>("OriginalTetrisTheme");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(backgroundMusic);
-            
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace Game1
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -91,8 +93,6 @@ namespace Game1
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -108,7 +108,7 @@ namespace Game1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(borderPixel, new Rectangle(198, 48, 204, 404), Color.LightGray);
+            spriteBatch.Draw(borderPixel, new Rectangle(198, 18, 204, 404), Color.LightGray);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -118,7 +118,7 @@ namespace Game1
         {
             Components.Remove(shapeSprite);
 
-            // add code here to tell scoreSprite game is over.
+            scoreSprite.GameOver();
         }
     }
 }
