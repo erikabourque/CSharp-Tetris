@@ -72,6 +72,7 @@ namespace Game1
         private void checkInput()
         {
             KeyboardState newState = Keyboard.GetState();
+
             if (newState.IsKeyDown(Keys.Left))
             {
                 if (oldState.IsKeyDown(Keys.Left))
@@ -88,8 +89,8 @@ namespace Game1
                     //reset counter
                     counterInput = 0;
                 }
-                oldState = newState;
             }
+
 
             if (newState.IsKeyDown(Keys.Right))
             {
@@ -107,36 +108,21 @@ namespace Game1
                     //reset counter
                     counterInput = 0;
                 }
-                oldState = newState;
             }
 
-            if (newState.IsKeyDown(Keys.Down))
+            if ((oldState.IsKeyUp(Keys.Down)) && (newState.IsKeyDown(Keys.Down)))
             {
-                if (oldState.IsKeyDown(Keys.Down))
-                {
-                    shape.Drop();
-                }
-                oldState = newState;
+                shape.Drop();
+                counterInput = 0;
             }
 
-            if (newState.IsKeyDown(Keys.Space))
+            if ((oldState.IsKeyUp(Keys.Space)) && (newState.IsKeyDown(Keys.Space)))
             {
-                if (oldState.IsKeyDown(Keys.Space))
-                {
-                    counterInput++;
-                    if (counterInput > threshold)
-                    {
-                        shape.Rotate();
-                    }
-                }
-                else
-                {
-                    shape.Rotate();
-                    //reset counter
-                    counterInput = 0;
-                }
-                oldState = newState;
+                shape.Rotate();
+                counterInput = 0;
             }
+
+            oldState = newState;
         }
     }
 }

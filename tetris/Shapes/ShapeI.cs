@@ -59,99 +59,66 @@ namespace Tetris
         // Moves the shape to the left if possible.
         public override void MoveLeft()
         {
-            if (currentRotation == 1)
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[0].TryMoveLeft() && blocks[1].TryMoveLeft())
+                if (!blocks[i].TryMoveLeft())
                 {
-                    if (blocks[2].TryMoveLeft() && blocks[3].TryMoveLeft())
-                    {
-                        blocks[0].MoveLeft();
-                        blocks[1].MoveLeft();
-                        blocks[2].MoveLeft();
-                        blocks[3].MoveLeft();
-                    }
+                    return;
                 }
             }
-            else
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if(blocks[0].TryMoveLeft())
-                {
-                    blocks[0].MoveLeft();
-                    blocks[1].MoveLeft();
-                    blocks[2].MoveLeft();
-                    blocks[3].MoveLeft();
-                }
+                blocks[i].MoveLeft();
             }
         }
 
         // Moves the shape to the right if possible.
         public override void MoveRight()
         {
-            if (currentRotation == 1)
+            // Checking if its possible, returns if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[0].TryMoveRight() && blocks[1].TryMoveRight())
+                if (!blocks[i].TryMoveRight())
                 {
-                    if (blocks[2].TryMoveRight() && blocks[3].TryMoveRight())
-                    {
-                        blocks[0].MoveRight();
-                        blocks[1].MoveRight();
-                        blocks[2].MoveRight();
-                        blocks[3].MoveRight();
-                    }
+                    return;
                 }
             }
-            else
+
+            // Reaching here means all trys successful
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if(blocks[3].TryMoveRight())
-                {
-                    blocks[0].MoveRight();
-                    blocks[1].MoveRight();
-                    blocks[2].MoveRight();
-                    blocks[3].MoveRight();
-                }
+                blocks[i].MoveRight();
             }
         }
 
         // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
-            if (currentRotation == 1)
+            bool canDrop = true;
+            // Checking if its possible, prevents if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[3].TryMoveDown())
+                if (!blocks[i].TryMoveDown())
                 {
-                    blocks[0].MoveDown();
-                    blocks[1].MoveDown();
-                    blocks[2].MoveDown();
-                    blocks[3].MoveDown();
+                    canDrop = false;
                 }
-                else
+            }
+
+            if (canDrop)
+            {
+                // Reaching here means all trys successful
+                for (int i = 0; i < blocks.Length; i++)
                 {
-                    // Means reached the pile
-                    OnJoinPile();
+                    blocks[i].MoveDown();
                 }
             }
             else
             {
-                if (blocks[0].TryMoveDown() && blocks[1].TryMoveDown())
-                {
-                    if (blocks[2].TryMoveDown() && blocks[3].TryMoveDown())
-                    {
-                        blocks[0].MoveDown();
-                        blocks[1].MoveDown();
-                        blocks[2].MoveDown();
-                        blocks[3].MoveDown();
-                    }
-                    else
-                    {
-                        // Means reached the pile
-                        OnJoinPile();
-                    }
-                }
-                else
-                {
-                    // Means reached the pile
-                    OnJoinPile();
-                }
+                // Means reached the pile
+                OnJoinPile();
             }
         }
 
