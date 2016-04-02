@@ -115,43 +115,28 @@ namespace Tetris
         // Moves the shape down one row if possible.  Can fire the addtopile event.
         public override void MoveDown()
         {
-            if (currentRotation == 1)
+            bool canDrop = true;
+            // Checking if its possible, prevents if it can't
+            for (int i = 0; i < blocks.Length; i++)
             {
-                if (blocks[3].TryMoveDown())
+                if (!blocks[i].TryMoveDown())
                 {
-                    blocks[0].MoveDown();
-                    blocks[1].MoveDown();
-                    blocks[2].MoveDown();
-                    blocks[3].MoveDown();
+                    canDrop = false;
                 }
-                else
+            }
+
+            if (canDrop)
+            {
+                // Reaching here means all trys successful
+                for (int i = 0; i < blocks.Length; i++)
                 {
-                    // Means reached the pile
-                    OnJoinPile();
+                    blocks[i].MoveDown();
                 }
             }
             else
             {
-                if (blocks[0].TryMoveDown() && blocks[1].TryMoveDown())
-                {
-                    if (blocks[2].TryMoveDown() && blocks[3].TryMoveDown())
-                    {
-                        blocks[0].MoveDown();
-                        blocks[1].MoveDown();
-                        blocks[2].MoveDown();
-                        blocks[3].MoveDown();
-                    }
-                    else
-                    {
-                        // Means reached the pile
-                        OnJoinPile();
-                    }
-                }
-                else
-                {
-                    // Means reached the pile
-                    OnJoinPile();
-                }
+                // Means reached the pile
+                OnJoinPile();
             }
         }
 
