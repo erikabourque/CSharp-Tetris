@@ -49,20 +49,20 @@ namespace Game1
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Player Score: " + score.Score, new Vector2(2, 20), Color.White);
-            spriteBatch.DrawString(font, "Current Level: " + score.Level, new Vector2(2, 50), Color.White);
-            spriteBatch.DrawString(font, "Total Lines cleared: " + score.Lines, new Vector2(2, 80), Color.White);
+            spriteBatch.DrawString(font, "Player Score: " + score.Score, new Vector2(2, 20), Color.Black);
+            spriteBatch.DrawString(font, "Current Level: " + score.Level, new Vector2(2, 50), Color.Black);
+            spriteBatch.DrawString(font, "Total Lines cleared: " + score.Lines, new Vector2(2, 80), Color.Black);
 
             if (gameOver)
             {
-                spriteBatch.DrawString(font, "Game Over, if you wish you \ncan restart the program.", new Vector2(2, 110), Color.White);
+                spriteBatch.DrawString(font, "Game Over, if you wish you \ncan restart the program.", new Vector2(2, 110), Color.Black);
             }
             else
             {
                 
                 spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Minutes
                     + ":" + gameTime.TotalGameTime.Seconds,
-                    new Vector2(0, 110), Color.White);
+                    new Vector2(0, 110), Color.Black);
             }
 
             spriteBatch.End();
